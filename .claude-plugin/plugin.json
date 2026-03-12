@@ -1,0 +1,17 @@
+{
+  "name": "spark",
+  "version": "1.0.0",
+  "description": "SPARK product strategist - 10-phase pipeline from idea to production with built-in quality gates, regulatory compliance, and audience-specific output formatting.",
+  "author": {
+    "name": "Ben Akiva"
+  },
+  "repository": "https://github.com/dartaryan/spark-passportcard",
+  "keywords": [
+    "product-strategy",
+    "passportcard",
+    "insurance",
+    "prd",
+    "prototype",
+    "compliance"
+  ]
+}
