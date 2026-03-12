@@ -1,7 +1,6 @@
 ---
 name: spark-phase-1-discovery
 description: Phase 1 of the SPARK pipeline. Discovery and idea sharpening through strategic dialogue. Deeply understands the product idea, its user, market context, and unfair advantage. Produces Handoff Document #1. Invoke with /spark-phase-1. Requires Phase 0 gate to be completed first.
-disable_model_invocation: true
 argument_hint: Begin Phase 1 Discovery - strategic interview to sharpen the product idea
 ---
 

@@ -1,7 +1,6 @@
 ---
 name: spark-phase-2-market
 description: Phase 2 of the SPARK pipeline. Market and competitive analysis. Validates the product idea against market reality, maps the competitive landscape, identifies positioning opportunities and risks. Produces Handoff Document #2. Invoke with /spark-phase-2. Requires Handoff Document #1.
-disable_model_invocation: true
 argument_hint: Begin Phase 2 Market Analysis - validate idea against market reality
 ---
 

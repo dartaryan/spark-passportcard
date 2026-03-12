@@ -1,7 +1,6 @@
 ---
 name: spark-phase-6-deploy
 description: Phase 6 of the SPARK pipeline. Walks the user through deploying their HTML prototype as a live website using GitHub Pages. Simple, step-by-step, no technical jargon. Produces Handoff Document #6. Invoke with /spark-phase-6. Requires approved prototype from Phase 5.
-disable_model_invocation: true
 argument_hint: Begin Phase 6 Deployment - get the prototype live on the internet
 ---
 

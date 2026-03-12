@@ -1,7 +1,6 @@
 ---
 name: spark-phase-3-definition
 description: Phase 3 of the SPARK pipeline. Transforms the validated idea into a concrete product definition with features, user stories, scope, design direction, and development language preference. Produces Handoff Document #3. Invoke with /spark-phase-3. Requires Handoff Documents #1, #2, and #2.5.
-disable_model_invocation: true
 argument_hint: Begin Phase 3 Product Definition - features, stories, design, scope
 ---
 

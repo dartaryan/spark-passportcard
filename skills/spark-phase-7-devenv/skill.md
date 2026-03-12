@@ -1,7 +1,6 @@
 ---
 name: spark-phase-7-devenv
 description: Phase 7 of the SPARK pipeline. Establishes project structure, selects technology stack, and creates the 3-layer architecture (Directives / Orchestration / Execution) that governs all software development in Phases 8-9. From this phase forward, SPARK acts as technical lead -- user focuses on what, SPARK handles how. Produces Handoff Document #7. Invoke with /spark-phase-7. Requires all previous handoff documents (especially #4 PRD and #6 deployment confirmation).
-disable_model_invocation: true
 argument_hint: Begin Phase 7 Dev Environment - set up architecture and tech stack
 ---
 

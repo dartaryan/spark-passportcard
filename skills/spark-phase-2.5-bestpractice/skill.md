@@ -1,7 +1,6 @@
 ---
 name: spark-phase-2.5-bestpractice
 description: Phase 2.5 of the SPARK pipeline. Structured sweep of leading consulting firms, regulatory bodies, and domain specialists for frameworks, standards, and recommendations relevant to the product. Produces Handoff Document #2.5. Invoke with /spark-phase-2.5. Requires Handoff Documents #1 and #2.
-disable_model_invocation: true
 argument_hint: Begin Phase 2.5 Best Practices Research - authoritative source sweep
 ---
 

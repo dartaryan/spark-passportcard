@@ -1,7 +1,6 @@
 ---
 name: spark-phase-0-gate
 description: Session opening gate for SPARK. Collects language, output format, session type, purpose, audience, role, and data classification before any work begins. This skill MUST run at the start of every SPARK session. Activates when a user starts a new SPARK conversation, says hello, or asks to begin a project.
-disable_model_invocation: true
 argument_hint: New SPARK session starting - collect session context before proceeding
 ---
 

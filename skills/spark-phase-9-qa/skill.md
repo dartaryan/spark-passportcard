@@ -1,7 +1,6 @@
 ---
 name: spark-phase-9-qa
 description: Phase 9 of the SPARK pipeline. Final quality assurance and security review before production release. Runs automated testing (unit, integration, end-to-end), OWASP Top 10 security audit, SDLC compliance verification, user acceptance testing, and deployment preparation. Produces Handoff Document #9 with pass/fail status. Invoke with /spark-phase-9. Requires all previous handoff documents (especially #4 PRD and #8 Development).
-disable_model_invocation: true
 argument_hint: Begin Phase 9 QA - quality assurance and security review
 ---
 

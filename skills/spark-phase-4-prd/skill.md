@@ -1,7 +1,6 @@
 ---
 name: spark-phase-4-prd
-description: Phase 4 of the SPARK pipeline. Assembles all previous handoff documents into a professional Brief + PRD document meeting international best-practice standards. Runs conflict detection across all prior phases before writing. Produces the Brief + PRD as a single deliverable. Invoke with /spark-phase-4. Requires Handoff Documents #1, #2, #2.5, and #3.
-disable_model_invocation: true
+description: Phase 4 of the SPARK pipeline. Assembles all previous handoff documents into a professional Brief + PRD document meeting international best-practice standards. Runs conflict detection across all prior phases before writing. Produces Handoff Document #4. Invoke with /spark-phase-4. Requires Handoff Documents #1, #2, #2.5, and #3.
 argument_hint: Begin Phase 4 Brief + PRD - assemble strategy and requirements document
 ---
 
@@ -38,13 +37,47 @@ Wait for resolution. Do not proceed with known contradictions unless the user ex
 | Mid-complexity (3-5 features, some novel elements) | 800-1,200 words | 2,500-3,500 words |
 | Complex (6+ features, novel architecture, regulated domain) | 1,200-1,800 words | 3,500-5,000 words |
 
-## Output Structure
+## Output: Handoff Document #4
 
-The output is a SINGLE markdown document with two sections:
+Apply spark-brand formatting rules. Use the handoff template from spark-core. The Brief + PRD content lives inside the standard handoff wrapper as the Work Product section.
+
+```markdown
+# SPARK -- Handoff Document #4: Brief + PRD
+<!-- Project: [name] | Phase 4 of 9 | Version: 1.0 | Date: [date] -->
+<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+
+## Session Context
+[Carried from Phase 0 via previous handoff documents]
+
+## Agent Instructions
+- **Project name:** [name]
+- **Phase completed:** 4 -- Brief + PRD Document
+- **Next phase:** 5 -- Working HTML Prototype
+- **Document version:** 1.0
+- **Session summary:** [2-3 sentences: what was assembled, conflicts resolved, key framing decisions]
+- **Key decisions locked:**
+  - Final positioning: [statement]
+  - Final feature scope (v1): [summary]
+  - Adopted frameworks incorporated: [list]
+- **Open questions for Phase 5:** [specific items]
+- **Regulatory hard constraints carried forward:** [list or "None identified"]
+- **Previous handoffs:** Builds on Documents #1, #2, #2.5, and #3
+
+## Decision Log
+| Decision | Alternatives Considered | Rationale | Decided By |
+|----------|------------------------|-----------|------------|
+
+## Version History
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | [date] | Initial creation |
+
+## Work Product: Brief + PRD
+
+---
 
 ### SECTION A: PRODUCT BRIEF (Strategic Summary)
 
-```markdown
 # [Product Name] -- Product Brief
 
 ## Executive Summary
@@ -84,11 +117,11 @@ The output is a SINGLE markdown document with two sections:
 
 ## Go-to-Market Summary
 [Initial distribution strategy]
-```
+
+---
 
 ### SECTION B: PRODUCT REQUIREMENTS DOCUMENT (Detailed Spec)
 
-```markdown
 # [Product Name] -- Product Requirements Document
 
 ## Overview and Background
@@ -175,6 +208,4 @@ DO NOT advance to Phase 5 without user approval of the Brief + PRD. This gate is
 ## After Approval
 
 Tell the user:
-"Your Brief + PRD is finalized. Download it. To format this document -- especially if it is in Hebrew -- I recommend using the Hebrew Markdown Export tool at https://dartaryan.github.io/hebrew-markdown-export/. It supports full RTL, Mermaid diagrams, custom color themes, and export to PDF and Word.
-
-When you are ready for Phase 5 (Working HTML Prototype), open a new conversation, upload all handoff documents plus this Brief + PRD, and invoke /spark-phase-5."
+"Your Brief + PRD is finalized. Download it. When you are ready for Phase 5 (Working HTML Prototype), open a new conversation, upload all handoff documents including this one, and invoke /spark-phase-5."

@@ -1,7 +1,6 @@
 ---
 name: spark-phase-5-prototype
 description: Phase 5 of the SPARK pipeline. Builds a single-file HTML working prototype that simulates the actual product experience. Not a landing page, not a mockup -- a functional product simulation with real interactions, sample data, and brand-compliant design. Produces Handoff Document #5. Invoke with /spark-phase-5. Requires approved Brief + PRD from Phase 4.
-disable_model_invocation: true
 argument_hint: Begin Phase 5 Prototype - build a working HTML product simulation
 ---
 

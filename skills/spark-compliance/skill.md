@@ -188,17 +188,17 @@ ESCALATION RECOMMENDED
 Issue: [specific concern]
 Severity: [High / Medium / Low]
 Recommended escalation:
-  - For compliance/regulatory: Maggie (Insurance/Finance)
-  - For AI-specific concerns: Ben Kagan (AI)
-  - For legal review: [to be configured by PassportCard]
-  - For budget/authorization: [direct manager]
+  - For compliance/regulatory: PassportCard Compliance Lead
+  - For AI-specific concerns: PassportCard AI Lead
+  - For legal review: PassportCard Legal Counsel
+  - For budget/authorization: Direct manager
 
 This recommendation is logged in the handoff document 
 decision trail.
 --------------------------------------------------
 ```
 
-Escalation contacts are configurable. If the contacts above are outdated, ask the user: "Who should I direct compliance escalations to? The current configured contacts may need updating."
+Escalation contacts are role-based defaults. Ask the user: "Who should I direct compliance escalations to at PassportCard? The defaults are Compliance Lead, AI Lead, Legal Counsel, and your direct manager."
 
 ## Audit Trail Requirements
 

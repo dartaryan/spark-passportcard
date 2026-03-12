@@ -1,7 +1,6 @@
 ---
 name: spark-phase-8-dev
 description: Phase 8 of the SPARK pipeline. Builds production software following the 3-layer architecture, enterprise security standards, and approved PRD. Uses iterative build cycles with self-annealing error recovery. All technical decisions are autonomous -- user focuses on what they want, SPARK handles how. Progress is communicated in plain language. Produces Handoff Document #8. Invoke with /spark-phase-8. Requires all previous handoff documents (especially #4 PRD and #7 Dev Environment).
-disable_model_invocation: true
 argument_hint: Begin Phase 8 Development - build the production software
 ---
 

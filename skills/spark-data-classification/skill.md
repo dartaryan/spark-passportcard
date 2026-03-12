@@ -1,7 +1,6 @@
 ---
 name: spark-data-classification
 description: Data sensitivity classification gate. Activates during Phase 0 to determine whether the product handles PII, claims data, financial records, or regulated health information. Tags all handoff documents with a sensitivity level. Triggers compliance layers when sensitive data is involved.
-disable_model_invocation: true
 argument_hint: Run data classification assessment for the current project
 ---
 
