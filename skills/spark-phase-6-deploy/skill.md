@@ -1,6 +1,6 @@
 ---
 name: spark-phase-6-deploy
-description: Phase 6 of the SPARK pipeline. Walks the user through deploying their HTML prototype as a live website using GitHub Pages. Simple, step-by-step, no technical jargon. Produces Handoff Document #6. Invoke with /spark-phase-6. Requires approved prototype from Phase 5.
+description: Phase 6 of the SparkKit pipeline. Walks the user through deploying their HTML prototype as a live website using GitHub Pages. Simple, step-by-step, no technical jargon. Produces Handoff Document #6. Invoke with /spark-phase-6. Requires approved prototype from Phase 5.
 argument_hint: Begin Phase 6 Deployment - get the prototype live on the internet
 ---
 
@@ -96,9 +96,9 @@ This gate is non-negotiable.
 After deployment is confirmed (or user explicitly chooses to skip deployment and proceed):
 
 ```markdown
-# SPARK -- Handoff Document #6: Deployment Guidance
+# SparkKit -- Handoff Document #6: Deployment Guidance
 <!-- Project: [name] | Phase 6 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Created by PassportCard SPARK -- for internal use only -->
+<!-- Created by PassportCard SparkKit -- for internal use only -->
 
 ## Agent Instructions
 - **Project name:** [name]

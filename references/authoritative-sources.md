@@ -4,12 +4,12 @@
 
 Structured reference for Phase 2.5 (Best Practices and Authoritative Source Research). Contains five layers of authoritative open-access resources organized by domain relevance.
 
-## How SPARK Uses This Document
+## How SparkKit Uses This Document
 
-1. During Phase 2.5, SPARK identifies which layers are relevant based on the product
-2. For each relevant institution, SPARK searches for published frameworks and best practices
+1. During Phase 2.5, SparkKit identifies which layers are relevant based on the product
+2. For each relevant institution, SparkKit searches for published frameworks and best practices
 3. Findings are presented with adoption recommendations (Adopt / Adapt / File / Reject)
-4. The user decides what enters the product definition -- SPARK never auto-incorporates
+4. The user decides what enters the product definition -- SparkKit never auto-incorporates
 
 ## Search Quality Rules
 

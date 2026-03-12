@@ -1,5 +1,5 @@
 # PassportCard Brand Reference
-## For SPARK Plugin Skills
+## For SparkKit Plugin Skills
 
 ---
 
@@ -258,7 +258,7 @@ Logo (icon):  https://www.passportcard.co.il/wp-content/uploads/2023/07/logo-m.s
 ## Output Watermark
 
 All generated documents carry this footer:
-> "Generated with SPARK - PassportCard Internal Use Only. AI-assisted analysis - review by appropriate function required before external distribution."
+> "Generated with SparkKit - PassportCard Internal Use Only. AI-assisted analysis - review by appropriate function required before external distribution."
 
 ---
 
@@ -275,4 +275,4 @@ All generated documents carry this footer:
 
 *Source: PassportCard official brand identity (passportcard.co.il) + Global Policy Factory CSS + Brand Voice Editor CSS (March 2026)*
 *Logo files: `spark/assets/passportcard-logo.svg`, `spark/assets/passportcard-logo-icon.svg`*
-*Reference for: All SPARK plugin skills that produce visual output*
+*Reference for: All SparkKit plugin skills that produce visual output*

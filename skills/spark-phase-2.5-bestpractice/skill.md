@@ -1,6 +1,6 @@
 ---
 name: spark-phase-2.5-bestpractice
-description: Phase 2.5 of the SPARK pipeline. Structured sweep of leading consulting firms, regulatory bodies, and domain specialists for frameworks, standards, and recommendations relevant to the product. Produces Handoff Document #2.5. Invoke with /spark-phase-2.5. Requires Handoff Documents #1 and #2.
+description: Phase 2.5 of the SparkKit pipeline. Structured sweep of leading consulting firms, regulatory bodies, and domain specialists for frameworks, standards, and recommendations relevant to the product. Produces Handoff Document #2.5. Invoke with /spark-phase-2.5. Requires Handoff Documents #1 and #2.
 argument_hint: Begin Phase 2.5 Best Practices Research - authoritative source sweep
 ---
 
@@ -113,9 +113,9 @@ DO NOT advance to Phase 3 without user confirmation. This gate is non-negotiable
 Apply spark-brand formatting rules. Use the handoff template from spark-core. Phase-specific content:
 
 ```markdown
-# SPARK -- Handoff Document #2.5: Best Practices and Authoritative Source Research
+# SparkKit -- Handoff Document #2.5: Best Practices and Authoritative Source Research
 <!-- Project: [name] | Phase 2.5 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+<!-- Generated with SparkKit -- PassportCard Internal Use Only -->
 
 ## Session Context
 [Carried from Phase 0]

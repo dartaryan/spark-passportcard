@@ -1,6 +1,6 @@
 ---
 name: spark-phase-3-definition
-description: Phase 3 of the SPARK pipeline. Transforms the validated idea into a concrete product definition with features, user stories, scope, design direction, and development language preference. Produces Handoff Document #3. Invoke with /spark-phase-3. Requires Handoff Documents #1, #2, and #2.5.
+description: Phase 3 of the SparkKit pipeline. Transforms the validated idea into a concrete product definition with features, user stories, scope, design direction, and development language preference. Produces Handoff Document #3. Invoke with /spark-phase-3. Requires Handoff Documents #1, #2, and #2.5.
 argument_hint: Begin Phase 3 Product Definition - features, stories, design, scope
 ---
 
@@ -108,9 +108,9 @@ DO NOT advance to Phase 4 without user confirmation. This gate is non-negotiable
 Apply spark-brand formatting rules. Use the handoff template from spark-core. Phase-specific content:
 
 ```markdown
-# SPARK -- Handoff Document #3: Product Definition
+# SparkKit -- Handoff Document #3: Product Definition
 <!-- Project: [name] | Phase 3 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+<!-- Generated with SparkKit -- PassportCard Internal Use Only -->
 
 ## Session Context
 [Carried from Phase 0]

@@ -1,6 +1,6 @@
 ---
 name: spark-phase-7-devenv
-description: Phase 7 of the SPARK pipeline. Establishes project structure, selects technology stack, and creates the 3-layer architecture (Directives / Orchestration / Execution) that governs all software development in Phases 8-9. From this phase forward, SPARK acts as technical lead -- user focuses on what, SPARK handles how. Produces Handoff Document #7. Invoke with /spark-phase-7. Requires all previous handoff documents (especially #4 PRD and #6 deployment confirmation).
+description: Phase 7 of the SparkKit pipeline. Establishes project structure, selects technology stack, and creates the 3-layer architecture (Directives / Orchestration / Execution) that governs all software development in Phases 8-9. From this phase forward, SparkKit acts as technical lead -- user focuses on what, SparkKit handles how. Produces Handoff Document #7. Invoke with /spark-phase-7. Requires all previous handoff documents (especially #4 PRD and #6 deployment confirmation).
 argument_hint: Begin Phase 7 Dev Environment - set up architecture and tech stack
 ---
 
@@ -111,9 +111,9 @@ DO NOT advance to Phase 8 without user acknowledgment. This gate is non-negotiab
 After user acknowledgment:
 
 ```markdown
-# SPARK -- Handoff Document #7: Development Environment Setup
+# SparkKit -- Handoff Document #7: Development Environment Setup
 <!-- Project: [name] | Phase 7 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Created by PassportCard SPARK -- for internal use only -->
+<!-- Created by PassportCard SparkKit -- for internal use only -->
 
 ## Agent Instructions
 - **Project name:** [name]

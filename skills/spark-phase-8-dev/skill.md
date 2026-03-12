@@ -1,6 +1,6 @@
 ---
 name: spark-phase-8-dev
-description: Phase 8 of the SPARK pipeline. Builds production software following the 3-layer architecture, enterprise security standards, and approved PRD. Uses iterative build cycles with self-annealing error recovery. All technical decisions are autonomous -- user focuses on what they want, SPARK handles how. Progress is communicated in plain language. Produces Handoff Document #8. Invoke with /spark-phase-8. Requires all previous handoff documents (especially #4 PRD and #7 Dev Environment).
+description: Phase 8 of the SparkKit pipeline. Builds production software following the 3-layer architecture, enterprise security standards, and approved PRD. Uses iterative build cycles with self-annealing error recovery. All technical decisions are autonomous -- user focuses on what they want, SparkKit handles how. Progress is communicated in plain language. Produces Handoff Document #8. Invoke with /spark-phase-8. Requires all previous handoff documents (especially #4 PRD and #7 Dev Environment).
 argument_hint: Begin Phase 8 Development - build the production software
 ---
 
@@ -157,9 +157,9 @@ DO NOT advance to Phase 9 without user approval. This gate is non-negotiable.
 ## Handoff Document #8
 
 ```markdown
-# SPARK -- Handoff Document #8: Software Development
+# SparkKit -- Handoff Document #8: Software Development
 <!-- Project: [name] | Phase 8 of 9 | Version: [X.0] | Date: [date] -->
-<!-- Created by PassportCard SPARK -- for internal use only -->
+<!-- Created by PassportCard SparkKit -- for internal use only -->
 
 ## Agent Instructions
 - **Project name:** [name]

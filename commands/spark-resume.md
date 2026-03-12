@@ -1,32 +1,32 @@
 # /spark-resume
 
-Resume an existing SPARK project from uploaded handoff documents. Identifies where the project left off, confirms with the user, and routes to the appropriate phase.
+Resume an existing SparkKit project from uploaded handoff documents. Identifies where the project left off, confirms with the user, and routes to the appropriate phase.
 
 ## Purpose
 
-Multi-session projects are the norm in SPARK. Users close a conversation, come back days or weeks later, and need to pick up exactly where they left off. This command makes that seamless.
+Multi-session projects are the norm in SparkKit. Users close a conversation, come back days or weeks later, and need to pick up exactly where they left off. This command makes that seamless.
 
 ## Behavior
 
 ### Step 1: Check for Uploaded Documents
 
-Scan the conversation for uploaded files. Look for SPARK handoff documents by identifying:
+Scan the conversation for uploaded files. Look for SparkKit handoff documents by identifying:
 - Files with "Handoff Document" in the content
-- Files with SPARK phase references (Phase 0 through Phase 9)
+- Files with SparkKit phase references (Phase 0 through Phase 9)
 - Files with version numbers (v1.0, v0.5, etc.)
-- Files with SPARK project metadata (project name, data classification, audience)
+- Files with SparkKit project metadata (project name, data classification, audience)
 
 **If no handoff documents are found:**
 
-"I don't see any SPARK handoff documents uploaded. To resume a project, please upload all handoff documents from your previous sessions. These are the files produced at the end of each phase.
+"I don't see any SparkKit handoff documents uploaded. To resume a project, please upload all handoff documents from your previous sessions. These are the files produced at the end of each phase.
 
 If you are starting a new project, use /spark-start instead."
 
 Stop here. Do not proceed without documents.
 
-**If unrelated files are uploaded (no SPARK metadata):**
+**If unrelated files are uploaded (no SparkKit metadata):**
 
-"These files don't appear to be SPARK handoff documents. They may be useful as background context for a new project. Would you like to:
+"These files don't appear to be SparkKit handoff documents. They may be useful as background context for a new project. Would you like to:
 1. Start a new project using these as reference material (/spark-start)
 2. Upload the correct handoff documents to resume an existing project"
 
@@ -76,7 +76,7 @@ Do not silently ignore conflicts. They compound across phases.
 Present the project status clearly:
 
 ```
-SPARK Resume — Project: [name]
+SparkKit Resume — Project: [name]
 ================================
 
 Documents loaded:

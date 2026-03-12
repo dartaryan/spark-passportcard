@@ -1,6 +1,6 @@
 ---
 name: spark-phase-9-qa
-description: Phase 9 of the SPARK pipeline. Final quality assurance and security review before production release. Runs automated testing (unit, integration, end-to-end), OWASP Top 10 security audit, SDLC compliance verification, user acceptance testing, and deployment preparation. Produces Handoff Document #9 with pass/fail status. Invoke with /spark-phase-9. Requires all previous handoff documents (especially #4 PRD and #8 Development).
+description: Phase 9 of the SparkKit pipeline. Final quality assurance and security review before production release. Runs automated testing (unit, integration, end-to-end), OWASP Top 10 security audit, SDLC compliance verification, user acceptance testing, and deployment preparation. Produces Handoff Document #9 with pass/fail status. Invoke with /spark-phase-9. Requires all previous handoff documents (especially #4 PRD and #8 Development).
 argument_hint: Begin Phase 9 QA - quality assurance and security review
 ---
 
@@ -147,9 +147,9 @@ After all steps, assign one of three statuses:
 ## Handoff Document #9
 
 ```markdown
-# SPARK -- Handoff Document #9: Quality Assurance and Security Review
+# SparkKit -- Handoff Document #9: Quality Assurance and Security Review
 <!-- Project: [name] | Phase 9 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Created by PassportCard SPARK -- for internal use only -->
+<!-- Created by PassportCard SparkKit -- for internal use only -->
 
 ## Agent Instructions
 - **Project name:** [name]
@@ -281,7 +281,7 @@ After all steps, assign one of three statuses:
 
 When Phase 9 status is PASSED or PASSED WITH NOTES:
 
-"Your product has completed the full SPARK pipeline -- from idea to validated concept to production-ready software.
+"Your product has completed the full SparkKit pipeline -- from idea to validated concept to production-ready software.
 
 Here is what we built: [high-level summary in 3-4 sentences covering the product, its users, key features, and the technology behind it].
 

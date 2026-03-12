@@ -1,6 +1,6 @@
 ---
 name: spark-phase-5-prototype
-description: Phase 5 of the SPARK pipeline. Builds a single-file HTML working prototype that simulates the actual product experience. Not a landing page, not a mockup -- a functional product simulation with real interactions, sample data, and brand-compliant design. Produces Handoff Document #5. Invoke with /spark-phase-5. Requires approved Brief + PRD from Phase 4.
+description: Phase 5 of the SparkKit pipeline. Builds a single-file HTML working prototype that simulates the actual product experience. Not a landing page, not a mockup -- a functional product simulation with real interactions, sample data, and brand-compliant design. Produces Handoff Document #5. Invoke with /spark-phase-5. Requires approved Brief + PRD from Phase 4.
 argument_hint: Begin Phase 5 Prototype - build a working HTML product simulation
 ---
 
@@ -166,9 +166,9 @@ DO NOT advance to Phase 6 without user approval of the prototype. This gate is n
 After user approval, produce:
 
 ```markdown
-# SPARK -- Handoff Document #5: Working HTML Prototype
+# SparkKit -- Handoff Document #5: Working HTML Prototype
 <!-- Project: [name] | Phase 5 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Created by PassportCard SPARK -- for internal use only -->
+<!-- Created by PassportCard SparkKit -- for internal use only -->
 
 ## Agent Instructions
 - **Project name:** [name]

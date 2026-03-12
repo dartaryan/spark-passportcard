@@ -1,6 +1,6 @@
 ---
 name: spark-phase-4-prd
-description: Phase 4 of the SPARK pipeline. Assembles all previous handoff documents into a professional Brief + PRD document meeting international best-practice standards. Runs conflict detection across all prior phases before writing. Produces Handoff Document #4. Invoke with /spark-phase-4. Requires Handoff Documents #1, #2, #2.5, and #3.
+description: Phase 4 of the SparkKit pipeline. Assembles all previous handoff documents into a professional Brief + PRD document meeting international best-practice standards. Runs conflict detection across all prior phases before writing. Produces Handoff Document #4. Invoke with /spark-phase-4. Requires Handoff Documents #1, #2, #2.5, and #3.
 argument_hint: Begin Phase 4 Brief + PRD - assemble strategy and requirements document
 ---
 
@@ -42,9 +42,9 @@ Wait for resolution. Do not proceed with known contradictions unless the user ex
 Apply spark-brand formatting rules. Use the handoff template from spark-core. The Brief + PRD content lives inside the standard handoff wrapper as the Work Product section.
 
 ```markdown
-# SPARK -- Handoff Document #4: Brief + PRD
+# SparkKit -- Handoff Document #4: Brief + PRD
 <!-- Project: [name] | Phase 4 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+<!-- Generated with SparkKit -- PassportCard Internal Use Only -->
 
 ## Session Context
 [Carried from Phase 0 via previous handoff documents]
@@ -190,7 +190,7 @@ Apply spark-brand formatting rules. Use the handoff template from spark-core. Th
 ## Document History
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | [Date] | SPARK + [User] | Initial version |
+| 1.0 | [Date] | SparkKit + [User] | Initial version |
 ```
 
 ## Hard Gate (DO NOT PROCEED WITHOUT THIS)

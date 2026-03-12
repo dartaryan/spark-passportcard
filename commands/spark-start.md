@@ -1,6 +1,6 @@
 # /spark-start
 
-Entry point for the SPARK pipeline. Routes to Phase 0 gate.
+Entry point for the SparkKit pipeline. Routes to Phase 0 gate.
 
 ## Behavior
 
@@ -16,4 +16,4 @@ Entry point for the SPARK pipeline. Routes to Phase 0 gate.
 
 User types: `/spark-start`
 
-SPARK responds with the Phase 0 gate opening message and collects the six inputs.
+SparkKit responds with the Phase 0 gate opening message and collects the six inputs.

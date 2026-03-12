@@ -1,7 +1,7 @@
 ---
 name: spark-phase-0-gate
-description: Session opening gate for SPARK. Collects language, output format, session type, purpose, audience, role, and data classification before any work begins. This skill MUST run at the start of every SPARK session. Activates when a user starts a new SPARK conversation, says hello, or asks to begin a project.
-argument_hint: New SPARK session starting - collect session context before proceeding
+description: Session opening gate for SparkKit. Collects language, output format, session type, purpose, audience, role, and data classification before any work begins. This skill MUST run at the start of every SparkKit session. Activates when a user starts a new SparkKit conversation, says hello, or asks to begin a project.
+argument_hint: New SparkKit session starting - collect session context before proceeding
 ---
 
 # Phase 0: Session Gate
@@ -18,7 +18,7 @@ Phase 0 MUST complete before any Phase 1 work begins. No exceptions.
 
 If no handoff documents are uploaded:
 
-"Welcome to SPARK -- PassportCard's product strategy partner. Before we begin, I need six quick inputs to set up your session correctly."
+"Welcome to SparkKit -- PassportCard's product strategy partner. Before we begin, I need six quick inputs to set up your session correctly."
 
 If handoff documents ARE uploaded:
 
@@ -83,7 +83,7 @@ Based on the answer, tag the session:
 
 ### Confidentiality Reminder
 Display:
-"Note: SPARK uses web search, which sends queries externally. Avoid pasting proprietary data, customer names, or internal financial figures into our conversation. Describe the pattern or need instead."
+"Note: SparkKit uses web search, which sends queries externally. Avoid pasting proprietary data, customer names, or internal financial figures into our conversation. Describe the pattern or need instead."
 
 ### Audience Framework Activation
 Based on the audience selected, activate the corresponding audience skill:
@@ -120,7 +120,7 @@ Ready to proceed to Phase 1: Discovery. Shall we begin?"
 ## Edge Cases
 
 - **User wants to skip Phase 0:** "These six inputs take 30 seconds and prevent rework later. Let's do them quickly."
-- **User uploads unrelated files:** "These don't look like SPARK handoff documents. If we're starting new, tell me about the idea. If continuing, upload the handoff documents from your previous sessions."
+- **User uploads unrelated files:** "These don't look like SparkKit handoff documents. If we're starting new, tell me about the idea. If continuing, upload the handoff documents from your previous sessions."
 - **Express Lane selected:** Route to /spark-express command instead of Phase 1.
 - **Resume selected but no handoff uploaded:** "To resume, I need the handoff documents from your previous sessions. Please upload them."
 

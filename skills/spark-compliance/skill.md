@@ -128,7 +128,7 @@ NEVER silently skip a jurisdiction. Always state the result, even if it is "noth
 
 ### Confidence Indicators (MANDATORY on all quantitative claims)
 
-Every number, statistic, market size, or quantitative claim in ANY SPARK output must carry a confidence indicator:
+Every number, statistic, market size, or quantitative claim in ANY SparkKit output must carry a confidence indicator:
 
 | Indicator | Meaning | When to Use |
 |-----------|---------|-------------|
@@ -232,7 +232,7 @@ This enables compliance officers to reconstruct rationale without re-reading ful
 ALL documents produced when this skill is active carry the footer:
 
 ```
-Generated with SPARK (PassportCard Builder) — Internal Use Only
+Generated with SparkKit (PassportCard Builder) — Internal Use Only
 AI-assisted analysis — review by [appropriate function] required before external distribution
 Data Classification: [LEVEL] | Generated: [date]
 ```

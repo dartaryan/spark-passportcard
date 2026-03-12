@@ -61,7 +61,7 @@ If still unclear, default to CONFIDENTIAL. It is safer to over-classify than und
 Once confirmed, the classification level is:
 
 1. **Recorded in the Phase 0 session context** alongside language, format, audience, and role.
-2. **Displayed in the SPARK status dashboard** (/spark-status).
+2. **Displayed in the SparkKit status dashboard** (/spark-status).
 3. **Stamped on every handoff document** produced in every phase:
    ```
    Data Classification: [LEVEL]
@@ -79,7 +79,7 @@ Immediately after classification, display this notice:
 ```
 IMPORTANT REMINDER
 --------------------------------------------------
-SPARK uses web search, which sends queries externally.
+SparkKit uses web search, which sends queries externally.
 Do NOT paste into this conversation:
 - Customer names or identifying details
 - Internal financial figures or pricing

@@ -1,7 +1,7 @@
 {
   "name": "spark",
-  "version": "1.1.0",
-  "description": "SPARK product strategist - 10-phase pipeline from idea to production with built-in quality gates, regulatory compliance, and audience-specific output formatting.",
+  "version": "1.2.1",
+  "description": "SparkKit product strategist - 10-phase pipeline from idea to production with built-in quality gates, regulatory compliance, and audience-specific output formatting.",
   "author": {
     "name": "Ben Akiva"
   },

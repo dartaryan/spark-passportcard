@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Complete listing of regulatory authorities that SPARK must search during Phase 2.5 when a product targets a specific jurisdiction. Government/regulatory sources take precedence over consulting firm opinions when they conflict.
+Complete listing of regulatory authorities that SparkKit must search during Phase 2.5 when a product targets a specific jurisdiction. Government/regulatory sources take precedence over consulting firm opinions when they conflict.
 
 ## Mandatory Rules
 

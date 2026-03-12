@@ -8,7 +8,7 @@ Dashboard showing current project progress. Answers "where am I?"
 2. Produce a concise status dashboard:
 
 ```
-SPARK Status Dashboard
+SparkKit Status Dashboard
 ======================
 Project: [name]
 Data Classification: [level]

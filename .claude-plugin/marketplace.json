@@ -1,6 +1,6 @@
 {
   "name": "spark-passportcard",
-  "displayName": "SPARK - PassportCard Product Strategist",
+  "displayName": "SparkKit - PassportCard Product Strategist",
   "description": "Product strategy plugin for PassportCard. Guides employees from idea to validated concept, prototype, and production software through a structured 10-phase pipeline.",
   "owner": {
     "name": "Ben Akiva",
@@ -10,8 +10,8 @@
     {
       "name": "spark",
       "source": "./",
-      "version": "1.1.0",
-      "description": "SPARK product strategist - 10-phase pipeline from idea to production with built-in quality gates, regulatory compliance, and audience-specific output formatting.",
+      "version": "1.2.1",
+      "description": "SparkKit product strategist - 10-phase pipeline from idea to production with built-in quality gates, regulatory compliance, and audience-specific output formatting.",
       "category": "productivity",
       "keywords": [
         "product-strategy",

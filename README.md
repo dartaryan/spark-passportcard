@@ -1,6 +1,6 @@
-# SPARK — PassportCard Product Strategist
+# SparkKit — PassportCard Product Strategist
 
-SPARK is a Claude plugin that guides you from a raw idea to a validated concept, working prototype, and production-ready software. It works as a structured 10-phase pipeline with built-in quality gates, regulatory compliance checks, and audience-specific output formatting.
+SparkKit is a Claude plugin that guides you from a raw idea to a validated concept, working prototype, and production-ready software. It works as a structured 10-phase pipeline with built-in quality gates, regulatory compliance checks, and audience-specific output formatting.
 
 Built and maintained by Ben Akiva for PassportCard.
 
@@ -12,7 +12,7 @@ Built and maintained by Ben Akiva for PassportCard.
 
 Launch Claude Code on your machine. Make sure you have a Pro, Max, Team, or Enterprise plan.
 
-### Step 2: Add the SPARK repository
+### Step 2: Add the SparkKit repository
 
 In Claude Code, go to: **Browse > Personal > Add from GitHub**
 
@@ -23,13 +23,13 @@ dartaryan/spark-passportcard
 
 Click **Sync** to download the plugin.
 
-### Step 3: Install the SPARK plugin
+### Step 3: Install the SparkKit plugin
 
-After syncing, install the plugin. You should see SPARK listed in your available skills.
+After syncing, install the plugin. You should see SparkKit listed in your available skills.
 
 ### Step 4: Verify
 
-Type `/spark-start` in a new conversation. SPARK should greet you and begin collecting session context. If it does, you're set.
+Type `/spark-start` in a new conversation. SparkKit should greet you and begin collecting session context. If it does, you're set.
 
 ---
 
@@ -38,7 +38,7 @@ Type `/spark-start` in a new conversation. SPARK should greet you and begin coll
 When Ben pushes an update, you'll receive an email notification. To update:
 
 1. Go to **Browse > Personal**
-2. Find SPARK in your list
+2. Find SparkKit in your list
 3. Click **Sync**
 
 That's it. Your next conversation will use the updated version.
@@ -49,18 +49,18 @@ That's it. Your next conversation will use the updated version.
 
 ### Starting a New Project
 
-Type `/spark-start` in any Claude Code conversation. SPARK will ask you six quick questions to configure the session:
+Type `/spark-start` in any Claude Code conversation. SparkKit will ask you six quick questions to configure the session:
 
 1. **Language** — English, Hebrew, German, or other
 2. **Output format** — Word, PowerPoint, Excel, HTML, PDF, or Markdown
 3. **Session type** — Full Pipeline, Express Lane, or Resume Project
 4. **Purpose** — What you want to achieve
 5. **Audience** — Who receives the output (Board, CEO, C-Level, Team, Brokers, Public)
-6. **Your role** — So SPARK adapts its vocabulary and depth to you
+6. **Your role** — So SparkKit adapts its vocabulary and depth to you
 
 ### The Pipeline
 
-SPARK runs as a 10-phase pipeline. Each phase produces a handoff document that carries your work to the next phase.
+SparkKit runs as a 10-phase pipeline. Each phase produces a handoff document that carries your work to the next phase.
 
 | Phase | What Happens | What You Get |
 |-------|-------------|-------------|
@@ -76,7 +76,7 @@ SPARK runs as a 10-phase pipeline. Each phase produces a handoff document that c
 | 8 - Development | Production code | Working software |
 | 9 - QA + Security | Testing, security audit, deployment readiness | QA report |
 
-Phases cannot be skipped. Each phase ends with your explicit approval before SPARK moves on.
+Phases cannot be skipped. Each phase ends with your explicit approval before SparkKit moves on.
 
 ### Commands
 
@@ -90,29 +90,29 @@ Phases cannot be skipped. Each phase ends with your explicit approval before SPA
 
 ### Express Lane
 
-Short on time? Use `/spark-express` for a single-session viability check. SPARK asks five focused questions, runs a quick competitive scan, and produces an Idea Viability Report with a clear GO / CONDITIONAL GO / NO-GO recommendation. Takes about 15-20 minutes.
+Short on time? Use `/spark-express` for a single-session viability check. SparkKit asks five focused questions, runs a quick competitive scan, and produces an Idea Viability Report with a clear GO / CONDITIONAL GO / NO-GO recommendation. Takes about 15-20 minutes.
 
 If the idea passes, the report converts into a Phase 1 handoff document so you can enter the full pipeline later.
 
 ### Resuming a Project
 
-Projects span multiple sessions. At the end of each phase, SPARK produces a handoff document. Save it.
+Projects span multiple sessions. At the end of each phase, SparkKit produces a handoff document. Save it.
 
 To resume:
 1. Start a new conversation
 2. Upload your handoff document(s)
 3. Type `/spark-resume`
-4. SPARK reads the documents, confirms where you left off, and continues
+4. SparkKit reads the documents, confirms where you left off, and continues
 
 ### Working Across Sessions
 
-For best results, run each phase in a separate conversation. Long conversations reduce quality. The handoff documents carry everything SPARK needs to pick up seamlessly.
+For best results, run each phase in a separate conversation. Long conversations reduce quality. The handoff documents carry everything SparkKit needs to pick up seamlessly.
 
 ---
 
 ## Data Classification
 
-SPARK asks about data sensitivity at the start of every session and tags your project accordingly:
+SparkKit asks about data sensitivity at the start of every session and tags your project accordingly:
 
 | Level | Meaning |
 |-------|---------|
@@ -123,13 +123,13 @@ SPARK asks about data sensitivity at the start of every session and tags your pr
 
 CONFIDENTIAL and RESTRICTED projects automatically activate additional compliance checks.
 
-**Important:** SPARK uses web search during research phases. Do not paste proprietary data, customer names, or internal financial figures into the conversation. Describe the pattern or need instead.
+**Important:** SparkKit uses web search during research phases. Do not paste proprietary data, customer names, or internal financial figures into the conversation. Describe the pattern or need instead.
 
 ---
 
 ## Audience Formatting
 
-Based on who will receive the output, SPARK applies different communication frameworks:
+Based on who will receive the output, SparkKit applies different communication frameworks:
 
 | Audience | Format |
 |----------|--------|

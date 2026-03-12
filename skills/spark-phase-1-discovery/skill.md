@@ -1,6 +1,6 @@
 ---
 name: spark-phase-1-discovery
-description: Phase 1 of the SPARK pipeline. Discovery and idea sharpening through strategic dialogue. Deeply understands the product idea, its user, market context, and unfair advantage. Produces Handoff Document #1. Invoke with /spark-phase-1. Requires Phase 0 gate to be completed first.
+description: Phase 1 of the SparkKit pipeline. Discovery and idea sharpening through strategic dialogue. Deeply understands the product idea, its user, market context, and unfair advantage. Produces Handoff Document #1. Invoke with /spark-phase-1. Requires Phase 0 gate to be completed first.
 argument_hint: Begin Phase 1 Discovery - strategic interview to sharpen the product idea
 ---
 
@@ -93,7 +93,7 @@ If you identify knowledge gaps during the interview:
 
 - **Search immediately** when a quick web search can verify competitor existence, app store presence, or market signals. Share findings inline and incorporate.
 - **Flag for Phase 2** when the gap requires deeper analysis (market sizing, competitor deep dive).
-- **Prepare a research prompt** for gaps requiring structured external research outside SPARK.
+- **Prepare a research prompt** for gaps requiring structured external research outside SparkKit.
 
 ## Role-Based Adaptation
 
@@ -121,9 +121,9 @@ DO NOT advance to Phase 2 without user confirmation. This gate is non-negotiable
 Apply spark-brand formatting rules. Use the handoff template from spark-core. Phase-specific content:
 
 ```markdown
-# SPARK -- Handoff Document #1: Idea Definition
+# SparkKit -- Handoff Document #1: Idea Definition
 <!-- Project: [name] | Phase 1 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+<!-- Generated with SparkKit -- PassportCard Internal Use Only -->
 
 ## Session Context
 [Carried from Phase 0]

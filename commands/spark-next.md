@@ -1,6 +1,6 @@
 # /spark-next
 
-Advance to the next phase of the SPARK pipeline. Enforces gate checks before allowing progression.
+Advance to the next phase of the SparkKit pipeline. Enforces gate checks before allowing progression.
 
 ## Behavior
 

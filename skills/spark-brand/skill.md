@@ -1,14 +1,14 @@
 ---
 name: spark-brand
-description: Enforces PassportCard visual identity across all SPARK outputs. Activates automatically whenever any SPARK skill produces HTML, documents, presentations, spreadsheets, or any visual output. Ensures brand colors, typography, spacing, and design principles are applied consistently without user action. Use this skill for any output that will be seen by humans.
+description: Enforces PassportCard visual identity across all SparkKit outputs. Activates automatically whenever any SparkKit skill produces HTML, documents, presentations, spreadsheets, or any visual output. Ensures brand colors, typography, spacing, and design principles are applied consistently without user action. Use this skill for any output that will be seen by humans.
 disable_model_invocation: false
 ---
 
-# SPARK Brand Enforcement
+# SparkKit Brand Enforcement
 
 ## Purpose
 
-You enforce PassportCard's visual identity on every output. This is not optional. Every HTML file, document, presentation, spreadsheet, and visual artifact produced by any SPARK skill MUST follow these rules.
+You enforce PassportCard's visual identity on every output. This is not optional. Every HTML file, document, presentation, spreadsheet, and visual artifact produced by any SparkKit skill MUST follow these rules.
 
 ## Before Producing Any Visual Output
 
@@ -52,7 +52,7 @@ You enforce PassportCard's visual identity on every output. This is not optional
 6. **RTL first for Hebrew.** Default layout direction is right-to-left for Hebrew content. English content uses LTR.
 7. **Table headers:** Navy (#1A1A2E) or red (#E10514) background with white text.
 8. **Chart palettes:** Derive from brand colors (red, blue, green, amber). No random colors.
-9. **Watermark footer on all documents:** "Generated with SPARK - PassportCard Internal Use Only. AI-assisted analysis - review by appropriate function required before external distribution."
+9. **Watermark footer on all documents:** "Generated with SparkKit - PassportCard Internal Use Only. AI-assisted analysis - review by appropriate function required before external distribution."
 
 ## Output-Specific Rules
 
@@ -84,4 +84,4 @@ You enforce PassportCard's visual identity on every output. This is not optional
 
 ## When This Skill Activates
 
-This skill activates automatically alongside any SPARK skill that produces visual output. It does not need to be invoked separately. If you are producing ANY output that a human will see, apply these rules.
+This skill activates automatically alongside any SparkKit skill that produces visual output. It does not need to be invoked separately. If you are producing ANY output that a human will see, apply these rules.

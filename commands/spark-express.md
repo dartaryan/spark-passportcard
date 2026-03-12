@@ -4,7 +4,7 @@ Single-session viability check. Produces a condensed "Idea Viability Report" wit
 
 ## Purpose
 
-Lower the barrier to first use. An executive with a 30-minute window can test an idea without committing to the full multi-session pipeline. This is the "try before you buy" mode for SPARK.
+Lower the barrier to first use. An executive with a 30-minute window can test an idea without committing to the full multi-session pipeline. This is the "try before you buy" mode for SparkKit.
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ IDEA VIABILITY REPORT
 =====================
 Project: [name]
 Date: [date]
-Assessed by: SPARK Express Lane
+Assessed by: SparkKit Express Lane
 Data Classification: [from Phase 0]
 Language: [from Phase 0]
 
@@ -86,7 +86,7 @@ KEY RISKS
 
 RECOMMENDATION DETAIL
 [GO]: "This idea has strong fundamentals. Recommended next step: 
-enter the full SPARK pipeline starting at Phase 1 for deep discovery."
+enter the full SparkKit pipeline starting at Phase 1 for deep discovery."
 
 [CONDITIONAL GO]: "This idea has potential but [specific issue] 
 needs resolution. Recommended: address [issue] then enter Phase 1. 

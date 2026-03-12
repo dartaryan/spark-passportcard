@@ -1,4 +1,4 @@
-# SPARK Entity Scorecard — Reference File
+# SparkKit Entity Scorecard — Reference File
 ## For use by spark-phase-2.5-bestpractice and spark-compliance skills
 
 ### How to Use This Reference

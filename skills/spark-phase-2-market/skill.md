@@ -1,6 +1,6 @@
 ---
 name: spark-phase-2-market
-description: Phase 2 of the SPARK pipeline. Market and competitive analysis. Validates the product idea against market reality, maps the competitive landscape, identifies positioning opportunities and risks. Produces Handoff Document #2. Invoke with /spark-phase-2. Requires Handoff Document #1.
+description: Phase 2 of the SparkKit pipeline. Market and competitive analysis. Validates the product idea against market reality, maps the competitive landscape, identifies positioning opportunities and risks. Produces Handoff Document #2. Invoke with /spark-phase-2. Requires Handoff Document #1.
 argument_hint: Begin Phase 2 Market Analysis - validate idea against market reality
 ---
 
@@ -91,9 +91,9 @@ DO NOT advance to Phase 2.5 without user confirmation. This gate is non-negotiab
 Apply spark-brand formatting rules. Use the handoff template from spark-core. Phase-specific content:
 
 ```markdown
-# SPARK -- Handoff Document #2: Market and Competitive Analysis
+# SparkKit -- Handoff Document #2: Market and Competitive Analysis
 <!-- Project: [name] | Phase 2 of 9 | Version: 1.0 | Date: [date] -->
-<!-- Generated with SPARK -- PassportCard Internal Use Only -->
+<!-- Generated with SparkKit -- PassportCard Internal Use Only -->
 
 ## Session Context
 [Carried from Phase 0 via Handoff #1]
