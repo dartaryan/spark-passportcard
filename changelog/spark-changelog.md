@@ -1,5 +1,12 @@
 # SparkKit Changelog
 
+## 2026-03-15 | v1.4.0
+- Added brand token reference file (references/passportcard-brand-tokens.md) with complete design system
+- Added PassportCard PPTX template with 10 slide layouts (title, section divider, content text, two-column, icon grid, big number, comparison table, timeline, quote, closing)
+- Added PassportCard DOCX template with branded cover page, headers, footers, heading styles, and table formatting
+- Updated spark-brand skill with template references and Egg Principle for user engagement
+- Source: Brand Identity 2, 3 IPMI, 5 Updated
+
 ## 2026-03-15 | v1.3.0
 - Spark agent merged into plugin as main thread (`agents/spark.md` + `settings.json`)
 - Interview enforcement strengthened with minimum standards checklist in Phase 1

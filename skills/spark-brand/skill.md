@@ -12,9 +12,10 @@ You enforce PassportCard's visual identity on every output. This is not optional
 
 ## Before Producing Any Visual Output
 
-1. Read `references/passportcard-brand.md` for the complete token reference.
-2. Apply the tokens below automatically. Do not ask the user about brand preferences.
-3. If a skill's output conflicts with brand rules, brand rules win.
+1. Read `references/passportcard-brand-tokens.md` for the authoritative color, typography, layout, tone, and logo usage reference.
+2. Read `references/passportcard-brand.md` for additional CSS variables and component patterns.
+3. Apply the tokens below automatically. Do not ask the user about brand preferences (except during Egg Principle moments — see below).
+4. If a skill's output conflicts with brand rules, brand rules win.
 
 ## Mandatory Brand Tokens
 
@@ -64,23 +65,50 @@ You enforce PassportCard's visual identity on every output. This is not optional
 - Use Lucide icons via CDN
 
 ### Documents (Word/PDF)
+- **Use the branded template:** When generating DOCX files, reference `assets/passportcard-template.docx` for the standard layout structure (cover page, headers, footers, heading styles, table formatting).
 - PassportCard logo top-left (from assets/ folder if available)
 - Montserrat for body text, Rubik for Hebrew
 - Fallback to Arial if custom fonts unavailable
-- Red (#E10514) for heading accents, navy (#1A1A2E) for body text
-- Watermark footer on every page
+- Heading 1: Montserrat Bold 28pt, brand red (#E10514)
+- Heading 2: Montserrat Bold 20pt, navy (#1A2744)
+- Heading 3: Montserrat Bold 16pt, black (#1A1A2E)
+- Body: Montserrat Regular 11pt, dark gray (#333333)
+- Table header: White text on brand red background
+- Table body: Alternating white / cream (#F5F0EB) rows
+- Cover page: Full red background, white logo centered, white title/subtitle/date/author
+- Header: Logo left + red line separator + "PassportCard Internal Use Only" right
+- Footer: "Generated with SparkKit" left, page number center, date right
+- A4 page size (PassportCard is international), 1" margins
 
 ### Presentations (PPTX/HTML slides)
-- Logo on title slide (centered or top-left)
+- **Use the branded template:** When generating PPTX files, reference `assets/passportcard-template.pptx` for the 10 canonical slide layouts (title, section divider, content text, two-column, icon grid, big number, comparison table, timeline, quote, closing).
+- Logo centered on title/closing slides (white on red), top-left on content slides (standard colors)
 - Red/white high-contrast scheme
-- Maximum white space
+- Navy (#1A2744) for section divider slides only
+- Cream (#F5F0EB) for content slide backgrounds
+- Maximum white space, 0.5" minimum margins
 - One key message per slide
 - Action titles, not label titles
+- Big numbers: 60-72pt bold red for stat callouts
+- 16:9 aspect ratio
 
 ### Spreadsheets
 - Header row: navy background (#1A1A2E), white text
 - Alternating row shading: white / #FAFAFA
 - Accent borders: #F1F5F9
+
+## The Egg Principle (User Contribution)
+
+SparkKit outputs should never feel fully automatic. Users must feel their contribution shaped the result.
+
+Implementation:
+- During Phase 0, ask users about their visual preferences (do they prefer formal or modern layouts? dark or light themes?)
+- During Phase 3 (Design Direction), present 2-3 visual directions and let the user choose
+- In the handoff document, record the user's design choices explicitly
+- When producing final outputs (Phase 4 PPTX/DOCX), reference those choices
+- Never use identical layouts for two different projects — vary based on user input
+
+This is not cosmetic — it drives engagement and ownership of the output. The Pillsbury insight: people engage more when they feel they contributed. SparkKit challenges and extracts value from the user, not just generates output.
 
 ## When This Skill Activates
 
