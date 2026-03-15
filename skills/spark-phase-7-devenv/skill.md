@@ -6,6 +6,8 @@ argument_hint: Begin Phase 7 Dev Environment - set up architecture and tech stac
 
 # Phase 7: Development Environment Setup
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Establish the project structure, select the technology stack, and create the 3-layer architecture that governs all software development in Phases 8-9.

@@ -6,6 +6,8 @@ argument_hint: Begin Phase 2 Market Analysis - validate idea against market real
 
 # Phase 2: Market and Competitive Analysis
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Validate the product idea against market reality. Map the competitive landscape with enough specificity to make confident positioning decisions. Identify gaps worth targeting and risks worth hedging.

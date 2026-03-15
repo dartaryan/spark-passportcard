@@ -6,6 +6,8 @@ argument_hint: Begin Phase 8 Development - build the production software
 
 # Phase 8: Software Development
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Build the production software following the 3-layer architecture established in Phase 7, enterprise security standards, and the approved PRD from Phase 4.

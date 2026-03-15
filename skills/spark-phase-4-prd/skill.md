@@ -6,6 +6,8 @@ argument_hint: Begin Phase 4 Brief + PRD - assemble strategy and requirements do
 
 # Phase 4: Brief + PRD Document
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Produce a professional Brief + PRD document that a product leader at any international tech company could read and immediately understand what to build, why, and how to measure success.

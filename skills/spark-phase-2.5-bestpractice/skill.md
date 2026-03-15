@@ -6,6 +6,8 @@ argument_hint: Begin Phase 2.5 Best Practices Research - authoritative source sw
 
 # Phase 2.5: Best Practices and Authoritative Source Research
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Conduct a structured sweep of the world's leading consulting firms, regulatory bodies, and domain specialists for frameworks, standards, and recommendations relevant to the product. Present findings to the user with explicit adoption recommendations. The user decides what enters the product definition -- you never auto-incorporate.

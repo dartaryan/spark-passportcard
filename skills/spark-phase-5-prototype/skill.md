@@ -6,6 +6,8 @@ argument_hint: Begin Phase 5 Prototype - build a working HTML product simulation
 
 # Phase 5: Working HTML Prototype
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Build a single-file HTML working prototype that simulates the actual product experience. This is an interactive product simulation, not a marketing page or wireframe.

@@ -6,6 +6,8 @@ argument_hint: Begin Phase 3 Product Definition - features, stories, design, sco
 
 # Phase 3: Product Definition
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Transform the validated idea into a concrete product definition: features, user stories, scope, design direction, and development language preference.

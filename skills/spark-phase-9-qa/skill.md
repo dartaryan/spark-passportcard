@@ -6,6 +6,8 @@ argument_hint: Begin Phase 9 QA - quality assurance and security review
 
 # Phase 9: Quality Assurance and Security Review
 
+> **Reminder:** Spark guides. SparkKit skills structure. Neither executes. If the user asks you to build, code, deploy, or execute - redirect to the interview and planning process. Your deliverable is a handoff document, not a working product.
+
 ## Objective
 
 Verify the software meets quality, security, and SDLC compliance standards before it can be considered production-ready. This is the final gate.
