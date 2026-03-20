@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SparkKit — PassportCard</title>
+  <meta name="description" content="SparkKit - ערכת הכלים האסטרטגית הפנימית של פספורטכארד. מרעיון למוצר.">
+
+  <!-- Rubik only — no fallback fonts that would show -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ================================================================
+       DESIGN TOKENS
+    ================================================================ */
+    :root {
+      /* Colors */
+      --red:        #E10514;
+      --red-dark:   #A2191C;
+      --red-hover:  #C50412;
+      --red-light:  rgba(225, 5, 20, 0.08);
+      --red-border: rgba(225, 5, 20, 0.2);
+
+      --dark:   #1A1A1A;
+      --mid:    #3D3D3D;
+      --muted:  #6B6B6B;
+      --light:  #9A9A9A;
+
+      --bg:        #F8F6F3;
+      --bg-card:   #FFFFFF;
+      --bg-cream:  #F0EDE8;
+      --bg-section:#EFEBE6;
+      --border:    #E5E0DA;
+      --border-lt: #F0EDE8;
+
+      /* Gradients */
+      --gradient-red: linear-gradient(328deg, var(--red) 0%, var(--red-dark) 100%);
+
+      /* Shadows */
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md:  0 4px 20px rgba(0,0,0,0.07);
+      --shadow-lg:  0 10px 40px rgba(0,0,0,0.09);
+      --shadow-red: 0 4px 14px rgba(225,5,20,0.28);
+
+      /* Radius */
+      --r-sm:   8px;
+      --r-md:   12px;
+      --r-lg:   16px;
+      --r-xl:   24px;
+      --r-full: 9999px;
+
+      /* Transitions */
+      --t-fast:   150ms ease;
+      --t-base:   200ms ease;
+      --t-slow:   300ms ease;
+    }
+
+    /* ================================================================
+       RESET & BASE
+    ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: opacity 0.12s ease;
+    }
+    body.switching { opacity: 0; }
+
+    a { color: inherit; }
+    button { font-family: 'Rubik', sans-serif; }
+
+    /* ================================================================
+       NAV
+    ================================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,246,243,0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-lt);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .nav-brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color var(--t-fast);
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Rubik', sans-serif;
+      cursor: pointer;
+      color: var(--muted);
+      transition: border-color var(--t-fast), color var(--t-fast);
+    }
+    .lang-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--muted);
+    }
+
+    /* ================================================================
+       BUTTONS
+    ================================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: var(--r-full);
+      padding: 12px 24px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gradient-red);
+      color: white;
+      box-shadow: var(--shadow-red);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(328deg, var(--red-hover) 0%, #8B1215 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(225,5,20,0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--dark);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .btn-nav {
+      background: var(--gradient-red);
+      color: white;
+      border-radius: var(--r-full);
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform var(--t-fast), box-shadow var(--t-fast);
+    }
+    .btn-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-red);
+    }
+
+    /* ================================================================
+       HERO
+    ================================================================ */
+    #hero {
+      background: var(--gradient-red);
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle pattern overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--r-full);
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 800;
+      color: white;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      max-width: 520px;
+      line-height: 1.55;
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* ================================================================
+       SECTION COMMONS
+    ================================================================ */
+    .section {
+      padding: 96px 32px;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ================================================================
+       WHAT IS SPARKKIT
+    ================================================================ */
+    #what-is { background: white; }
+
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .what-p {
+      font-size: 17px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .callout {
+      background: rgba(225,5,20,0.05);
+      border-inline-start: 3px solid var(--red);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      padding: 18px 20px;
+      margin-top: 8px;
+    }
+    [dir="ltr"] .callout {
+      border-radius: var(--r-md) 0 0 var(--r-md);
+    }
+    .callout-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .callout-body {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15.5px;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+    .bullet-icon {
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ================================================================
+       PIPELINE
+    ================================================================ */
+    #pipeline { background: var(--bg); }
+
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .phase-card {
+      background: white;
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--t-base), box-shadow var(--t-base);
+    }
+    .phase-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .phase-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gradient-red);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(225,5,20,0.3);
+    }
+    .phase-num-half {
+      background: #FEBCBD;
+      color: var(--dark);
+      box-shadow: none;
+      font-size: 11px;
+    }
+
+    .phase-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .phase-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pipeline-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: white;
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-md);
+      max-width: 680px;
+    }
+    .pipeline-note p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* ================================================================
+       TOOLS
+    ================================================================ */
+    #tools { background: white; }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .tool-card {
+      background: white;
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--t-base), box-shadow var(--t-base);
+    }
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tool-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--r-md);
+      background: rgba(225,5,20,0.08);
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tool-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .tool-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      color: var(--muted);
+    }
+
+    .tool-where {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .tool-desc {
+      font-size: 15.5px;
+      color: var(--mid);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .cmds-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .cmds-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cmd {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      color: var(--dark);
+    }
+
+    /* ================================================================
+       INSTALLATION
+    ================================================================ */
+    #installation { background: var(--bg-cream); }
+
+    .install-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .install-card {
+      background: white;
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .install-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .install-card-header h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--gradient-red);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(225,5,20,0.3);
+    }
+
+    .step-content {
+      padding-top: 6px;
+    }
+    .step-content p {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 8px;
+      color: var(--dark);
+    }
+
+    .update-intro {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ================================================================
+       FAQ
+    ================================================================ */
+    #faq { background: white; }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 56px;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow var(--t-base);
+    }
+    .faq-item:hover { box-shadow: var(--shadow-md); }
+
+    .faq-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: start;
+      transition: background var(--t-fast);
+    }
+    .faq-trigger:hover { background: var(--bg); }
+
+    .faq-q {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .faq-chevron {
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform var(--t-slow);
+    }
+    .faq-chevron.open { transform: rotate(180deg); }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s ease;
+    }
+    .faq-body.open { max-height: 400px; }
+
+    .faq-a {
+      padding: 0 28px 24px;
+      font-size: 15.5px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ================================================================
+       FOOTER
+    ================================================================ */
+    footer {
+      background: #1A1A1A;
+      color: white;
+      padding: 56px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+    }
+    .footer-credit {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 3px;
+    }
+
+    .version-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--r-full);
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color var(--t-fast);
+    }
+    .footer-link:hover { color: white; }
+
+    /* ================================================================
+       MOBILE MENU
+    ================================================================ */
+    #mobile-menu {
+      display: none;
+      border-top: 1px solid var(--border-lt);
+      background: white;
+    }
+    #mobile-menu a {
+      display: block;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color var(--t-fast), background var(--t-fast);
+    }
+    #mobile-menu a:hover { color: var(--red); background: rgba(225,5,20,0.04); }
+    #mobile-menu .mobile-cta {
+      padding: 16px 28px;
+    }
+
+    /* ================================================================
+       RESPONSIVE
+    ================================================================ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .btn-nav  { display: none; }
+      .hamburger { display: block; }
+
+      .section { padding: 64px 20px; }
+      #hero { padding: 64px 20px; min-height: 70vh; }
+      .hero-title { font-size: 38px; letter-spacing: -0.5px; }
+
+      .what-grid    { grid-template-columns: 1fr; gap: 40px; }
+      .pipeline-grid{ grid-template-columns: 1fr; }
+      .tools-grid   { grid-template-columns: 1fr; }
+      .tool-card    { padding: 28px 24px; }
+      .install-card { padding: 28px 24px; }
+      .faq-trigger  { padding: 18px 20px; }
+      .faq-a        { padding: 0 20px 20px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ================================================================
+       PRINT
+    ================================================================ */
+    @media print {
+      nav, #hero, #what-is, #pipeline, #tools, #faq, footer { display: none !important; }
+      #installation { display: block !important; background: white !important; padding: 24px 0 !important; }
+      .install-card { box-shadow: none !important; border: 1px solid #ddd; break-inside: avoid; margin-bottom: 16px; }
+      .step-num { background: #E10514 !important; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================================================================
+     NAV
+================================================================ -->
+<nav>
+  <div class="nav-inner">
+
+    <!-- Brand -->
+    <a href="#" class="nav-brand">
+      <svg width="48" height="28" viewBox="0 0 113 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="PassportCard">
+        <path d="M71.1781 3.36353C68.4991 1.42016 62.6697 0.0358777 56.9994 0C51.3291 0.0358777 45.5027 1.42016 42.8207 3.36353C41.235 4.51461 40.5292 5.91384 40.6673 7.64195C40.6673 12.6738 44.5867 25.7393 51.5904 35.2498C52.8038 37.0497 54.825 37.9825 56.9994 37.9915C59.1738 37.9825 61.1951 37.0497 62.4084 35.2498C69.4122 25.7363 73.3315 12.6738 73.3315 7.64195C73.4666 5.91384 72.7639 4.51461 71.1781 3.36353Z" fill="#E10514"/>
+        <path d="M52.1224 17.5589C52.1224 17.5589 50.6537 14.0369 49.8819 10.3594C49.8158 10.0485 50.005 9.74052 50.3144 9.6568C51.8851 9.22627 54.8073 8.82265 56.4171 8.82265C60.5377 8.82265 63.6131 9.6568 63.547 12.4822C63.4869 15.0504 60.2403 17.0057 52.1254 17.5589M67.8748 11.9829C67.7577 7.95261 64.6763 4.48145 56.4622 4.48145C52.9903 4.48145 49.2572 5.14219 46.7314 6.26337C46.404 6.40688 46.1247 6.55936 45.9085 6.71782C45.4099 7.07959 45.0555 7.5759 45.1186 8.35923C45.1336 8.56552 46.0346 18.994 54.7202 32.1312C55.2158 32.8816 55.8825 33.7696 56.8406 33.7696C57.18 33.7696 57.3391 33.7457 57.8137 33.5543C58.2611 33.3749 58.9129 32.8637 59.075 32.0774C59.1952 31.4824 59.036 30.8904 58.8168 30.5556C55.9666 26.2383 53.8763 21.6968 53.8763 21.6968C53.8763 21.6968 68.1421 21.0211 67.8778 11.9799" fill="white"/>
+      </svg>
+      <div>
+        <div class="nav-brand-name">SparkKit</div>
+        <div class="nav-brand-sub">by PassportCard</div>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      <li><a href="#what-is"      data-i18n="nav-what">מה זה</a></li>
+      <li><a href="#pipeline"     data-i18n="nav-pipeline">איך עובד</a></li>
+      <li><a href="#tools"        data-i18n="nav-tools">כלים</a></li>
+      <li><a href="#installation" data-i18n="nav-install">התקנה</a></li>
+      <li><a href="#faq"          data-i18n="nav-faq">שאלות נפוצות</a></li>
+    </ul>
+
+    <!-- Controls -->
+    <div class="nav-actions">
+      <button id="lang-toggle" class="lang-btn" aria-label="Toggle language">EN</button>
+      <a href="#installation" class="btn-nav">
+        <i data-lucide="download" style="width:13px;height:13px"></i>
+        <span data-i18n="nav-cta">התקנה</span>
+      </a>
+      <button id="mobile-btn" class="hamburger" aria-label="Open menu">
+        <i data-lucide="menu" style="width:22px;height:22px"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu">
+    <a href="#what-is"      data-i18n="nav-what">מה זה</a>
+    <a href="#pipeline"     data-i18n="nav-pipeline">איך עובד</a>
+    <a href="#tools"        data-i18n="nav-tools">כלים</a>
+    <a href="#installation" data-i18n="nav-install">התקנה</a>
+    <a href="#faq"          data-i18n="nav-faq">שאלות נפוצות</a>
+    <div class="mobile-cta">
+      <a href="#installation" class="btn btn-primary" style="width:100%;justify-content:center">
+        <i data-lucide="download" style="width:14px;height:14px"></i>
+        <span data-i18n="nav-cta">התקנה</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <i data-lucide="shield-check" style="width:13px;height:13px"></i>
+      <span data-i18n="hero-label">ערכת כלים פנימית · פספורטכארד</span>
+    </div>
+    <h1 class="hero-title">SparkKit</h1>
+    <p class="hero-tagline" data-i18n="hero-tagline">
+      מרעיון למוצר. ערכת הכלים האסטרטגית של פספורטכארד.
+    </p>
+    <div class="hero-buttons">
+      <a href="#installation" class="btn btn-primary">
+        <i data-lucide="rocket" style="width:16px;height:16px"></i>
+        <span data-i18n="hero-cta1">התחלת עבודה</span>
+      </a>
+      <a href="#what-is" class="btn btn-ghost">
+        <i data-lucide="book-open" style="width:16px;height:16px"></i>
+        <span data-i18n="hero-cta2">למידע נוסף</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     WHAT IS SPARKKIT
+================================================================ -->
+<section id="what-is" class="section">
+  <div class="section-inner">
+    <span class="eyebrow" data-i18n="what-label">מה זה ספארקיט</span>
+    <h2 class="section-title" data-i18n="what-title">לא צ'אטבוט. מתודולוגיה.</h2>
+
+    <div class="what-grid">
+      <!-- Left: text -->
+      <div>
+        <p class="what-p" data-i18n="what-p1">
+          ספארקיט הוא ערכת כלים מובנית לאסטרטגיית מוצר שמלווה אותך מרעיון גולמי ועד קונספט מאומת, אב-טיפוס עובד ותוכנה מוכנה לייצור. הוא נבנה במיוחד עבור עובדי פספורטכארד.
+        </p>
+        <div class="callout">
+          <div class="callout-title" data-i18n="what-callout-title">ספארקיט הוא לא צ'אטבוט.</div>
+          <div class="callout-body" data-i18n="what-callout-body">
+            הוא מתודולוגיה מובנית עם מומחיות מובנית. יש לו דעות, הוא מציג שאלות קשות, ולא יניח לך לדלג על שלבים.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: bullets -->
+      <ul class="bullet-list">
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b1">צינור עבודה של 10 שלבים שמבטיח שלא מפספסים כלום</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b2">שערי איכות בין כל שלב</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b3">בדיקות רגולציה לכל תחום שיפוט שבו פספורטכארד פועלת</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b4">פורמט פלט מותאם קהל — דירקטוריון, מנכ"ל, הנהלה, צוות, סוכנים</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b5">אכיפת מותג פספורטכארד על כל התוצרים</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b6">מסמכי Brief + PRD מקצועיים בסטנדרט בינלאומי</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b7">אבות-טיפוס HTML עובדים שאפשר לשתף ולבדוק</span></li>
+        <li><i data-lucide="check-circle" class="bullet-icon" style="width:18px;height:18px"></i><span data-i18n="what-b8">תמיכה מלאה בפיתוח עד לייצור</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     PIPELINE
+================================================================ -->
+<section id="pipeline" class="section">
+  <div class="section-inner">
+    <span class="eyebrow" data-i18n="pipeline-label">צינור העבודה</span>
+    <h2 class="section-title" data-i18n="pipeline-title">10 שלבים. מרעיון לייצור.</h2>
+    <p class="section-sub" data-i18n="pipeline-subtitle">כל שלב מסתיים בשער שחייבים לעבור לפני שממשיכים. לא ניתן לדלג.</p>
+
+    <div class="pipeline-grid">
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">0</div>
+          <div class="phase-name" data-i18n="phase-0-name">שער כניסה</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-0-desc">שפה, פורמט, קהל, תפקיד, סיווג נתונים</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">1</div>
+          <div class="phase-name" data-i18n="phase-1-name">גילוי</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-1-desc">ראיון אסטרטגי לחידוד הרעיון</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">2</div>
+          <div class="phase-name" data-i18n="phase-2-name">ניתוח שוק</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-2-desc">תמונת תחרות ומיצוב</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num phase-num-half">2.5</div>
+          <div class="phase-name" data-i18n="phase-25-name">שיטות עבודה מומלצות</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-25-desc">מחקר ממקורות מוסמכים</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">3</div>
+          <div class="phase-name" data-i18n="phase-3-name">הגדרת מוצר</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-3-desc">פיצ'רים, user stories, כיוון עיצובי</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">4</div>
+          <div class="phase-name" data-i18n="phase-4-name">מסמך אסטרטגי</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-4-desc">Brief + PRD בסטנדרט בינלאומי</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">5</div>
+          <div class="phase-name" data-i18n="phase-5-name">אב-טיפוס</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-5-desc">אב-טיפוס HTML עובד</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">6</div>
+          <div class="phase-name" data-i18n="phase-6-name">פריסה</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-6-desc">העלאת אב-הטיפוס לאוויר</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">7</div>
+          <div class="phase-name" data-i18n="phase-7-name">סביבת פיתוח</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-7-desc">ארכיטקטורה וסטאק טכנולוגי</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">8</div>
+          <div class="phase-name" data-i18n="phase-8-name">פיתוח</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-8-desc">קוד ייצור</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">9</div>
+          <div class="phase-name" data-i18n="phase-9-name">בדיקות ואבטחה</div>
+        </div>
+        <div class="phase-desc" data-i18n="phase-9-desc">QA, ביקורת אבטחה, מוכנות לפריסה</div>
+      </div>
+
+    </div>
+
+    <div class="pipeline-note">
+      <i data-lucide="info" style="width:15px;height:15px;color:var(--muted);flex-shrink:0;margin-top:2px"></i>
+      <p data-i18n="pipeline-note">לא חייבים לעבור את כל 10 השלבים. הרבה פרויקטים נעצרים אחרי שלב 6 (אב-טיפוס) ומעבירים לצוות פיתוח.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     TOOLS
+================================================================ -->
+<section id="tools" class="section">
+  <div class="section-inner">
+    <span class="eyebrow" data-i18n="tools-label">הכלים</span>
+    <h2 class="section-title" data-i18n="tools-title">שני חלקים. עבודה אחת.</h2>
+
+    <div class="tools-grid">
+
+      <!-- SparkKit Plugin -->
+      <div class="tool-card">
+        <div class="tool-icon-wrap">
+          <i data-lucide="terminal" style="width:24px;height:24px"></i>
+        </div>
+        <div class="tool-title-row">
+          <span class="tool-name">SparkKit</span>
+          <span class="badge" data-i18n="tool1-badge">פלאגין</span>
+        </div>
+        <div class="tool-where">
+          <strong data-i18n="tool1-where-label">איפה:</strong>
+          <span data-i18n="tool1-where"> Claude Desktop או Claude Code</span>
+        </div>
+        <p class="tool-desc" data-i18n="tool1-desc">מנוע הביצוע. מריץ פקודות, מייצר תוצרים, בונה אבות-טיפוס. כאן קורה העבודה.</p>
+        <div class="cmds-label" data-i18n="tool1-cmds-label">פקודות עיקריות</div>
+        <div class="cmds-row">
+          <span class="cmd">/spark-start</span>
+          <span class="cmd">/spark-express</span>
+          <span class="cmd">/spark-resume</span>
+          <span class="cmd">/spark-next</span>
+          <span class="cmd">/spark-status</span>
+        </div>
+      </div>
+
+      <!-- Spark Agent -->
+      <div class="tool-card">
+        <div class="tool-icon-wrap">
+          <i data-lucide="message-circle" style="width:24px;height:24px"></i>
+        </div>
+        <div class="tool-title-row">
+          <span class="tool-name">Spark</span>
+          <span class="badge" data-i18n="tool2-badge">סוכן</span>
+        </div>
+        <div class="tool-where">
+          <strong data-i18n="tool2-where-label">איפה:</strong>
+          <span data-i18n="tool2-where"> פרויקט Spark ב-Claude.ai</span>
+        </div>
+        <p class="tool-desc" data-i18n="tool2-desc">המנחה האישי שלך. שאל שאלות, קבל עצות, הכן briefs, שמור התקדמות. מכיר את כל צינור SparkKit ויכול לנווט אותך בו.</p>
+        <div class="cmds-label" data-i18n="tool2-use-label">אופן שימוש</div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <i data-lucide="corner-down-right" style="width:13px;height:13px;color:var(--muted);flex-shrink:0;margin-top:2px"></i>
+          <span style="font-size:14px;color:var(--mid)" data-i18n="tool2-use">פשוט שוחח. Spark ידריך אותך.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     INSTALLATION
+================================================================ -->
+<section id="installation" class="section">
+  <div class="section-inner" style="max-width:800px">
+    <span class="eyebrow" data-i18n="install-label">התקנה</span>
+    <h2 class="section-title" data-i18n="install-title">מתחילים להשתמש</h2>
+    <p class="section-sub" data-i18n="install-subtitle">ההתקנה לוקחת פחות מ-5 דקות.</p>
+
+    <div class="install-cards">
+
+      <!-- Plugin Installation -->
+      <div class="install-card">
+        <div class="install-card-header">
+          <i data-lucide="plug" style="width:20px;height:20px;color:var(--red)"></i>
+          <h3 data-i18n="install-plugin-title">התקנת פלאגין SparkKit</h3>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content"><p data-i18n="install-s1">פתח את Claude Desktop (האפליקציה, לא האתר)</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content"><p data-i18n="install-s2">לחץ על "Customize" בסרגל הצד השמאלי</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content"><p data-i18n="install-s3">תחת "Personal plugins", לחץ על כפתור "+"</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content"><p data-i18n="install-s4">בחר "Add from GitHub"</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <p data-i18n="install-s5">הדבק את הכתובת:</p>
+              <code style="display:inline-block;margin-top:8px">dartaryan/spark-passportcard</code>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-content"><p data-i18n="install-s6">לחץ "Sync" להורדה</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">7</div>
+            <div class="step-content"><p data-i18n="install-s7">מצא את "Spark" ברשימת הפלאגינים והפעל אותו</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">8</div>
+            <div class="step-content">
+              <p id="install-s8-el">אמת על ידי הקלדת <code>/spark-</code> בכל צ'אט — אמורות להופיע הפקודות</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spark Agent Setup -->
+      <div class="install-card">
+        <div class="install-card-header">
+          <i data-lucide="message-circle" style="width:20px;height:20px;color:var(--red)"></i>
+          <h3 data-i18n="install-agent-title">הגדרת סוכן Spark</h3>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content"><p data-i18n="install-a1">היכנס ל-claude.ai ופתח את פרויקט Spark (הקישור יסופק על ידי ראש הצוות)</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content"><p data-i18n="install-a2">התחל לשוחח — Spark ידריך אותך משם</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Updating -->
+      <div class="install-card">
+        <div class="install-card-header">
+          <i data-lucide="refresh-cw" style="width:20px;height:20px;color:var(--red)"></i>
+          <h3 data-i18n="install-update-title">עדכון SparkKit</h3>
+        </div>
+        <p class="update-intro" data-i18n="install-update-intro">כשמקבלים הודעה על עדכונים:</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content"><p data-i18n="install-u1">עבור ל-Customize &gt; פלאגין Spark</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content"><p data-i18n="install-u2">לחץ על תפריט "..."</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content"><p data-i18n="install-u3">לחץ "Uninstall"</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content"><p data-i18n="install-u4">הוסף מחדש מ-GitHub (אותם שלבים כמו ההתקנה)</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FAQ
+================================================================ -->
+<section id="faq" class="section">
+  <div class="section-inner" style="max-width:800px">
+    <span class="eyebrow" data-i18n="faq-label">שאלות נפוצות</span>
+    <h2 class="section-title" data-i18n="faq-title">יש לך שאלות?</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-1-q">האם אני צריך ידע טכני כדי להשתמש בספארקיט?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-1-a">לא. ספארקיט מתאים את עצמו לתפקידך. אם אתה לא טכני, הוא משתמש בשפה פשוטה ומטפל בכל ההחלטות הטכניות עבורך.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-2-q">האם אפשר להשתמש בספארקיט לכל סוג של פרויקט?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-2-a">ספארקיט מיועד לאסטרטגיית מוצר — הפיכת רעיונות לתוכניות קונקרטיות, אבות-טיפוס ותוכנה. הוא מותאם לסביבה העסקית של פספורטכארד כולל ביטוח, רגולציה ופעילות רב-מדינתית.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-3-q">מה ההבדל בין ספארקיט לבין ספארק?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-3-a">ספארקיט הוא ערכת הכלים — הפלאגין עם הפקודות והמיומנויות. ספארק הוא המנחה שלך — סוכן שיחה שעוזר לך לנווט בספארקיט. חשבו על ספארק כמייעץ ועל ספארקיט כסדנה.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-4-q">האם חייבים לעבור את כל 10 השלבים?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-4-a">לא. הרבה פרויקטים מרוויחים מרק שלבים 0–6 (אסטרטגיה ועד אב-טיפוס). שלבים 7–9 הם לפרויקטים שממשיכים לפיתוח תוכנה מלא.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-5-q">האם המידע שלי בטוח?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-5-a">ספארקיט כולל סיווג נתונים בתחילת כל סשן. הוא מזכיר לך לא להדביק מידע קנייני בשיחות. כל התוצרים מסומנים "לשימוש פנימי בלבד".</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-6-q">איך מקבלים עדכונים?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-6-a">ראש הצוות שלך יודיע לך כשיהיו עדכונים זמינים. עקוב אחר הוראות העדכון בחלק ההתקנה.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-7-q">מה אם אני נתקע?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-7-a">פתח את פרויקט ספארק ב-Claude.ai ובקש עזרה. ספארק מכיר את כל מערכת ספארקיט ויכול להדריך אותך.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger">
+          <span class="faq-q" data-i18n="faq-8-q">האם אפשר להשתמש בספארקיט בעברית?</span>
+          <i data-lucide="chevron-down" class="faq-chevron" style="width:18px;height:18px"></i>
+        </button>
+        <div class="faq-body"><div class="faq-a" data-i18n="faq-8-a">כן. ספארקיט תומך בעברית, אנגלית, גרמנית ושפות נוספות. אתה בוחר את השפה שלך בשלב 0.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="36" height="21" viewBox="0 0 113 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M71.1781 3.36353C68.4991 1.42016 62.6697 0.0358777 56.9994 0C51.3291 0.0358777 45.5027 1.42016 42.8207 3.36353C41.235 4.51461 40.5292 5.91384 40.6673 7.64195C40.6673 12.6738 44.5867 25.7393 51.5904 35.2498C52.8038 37.0497 54.825 37.9825 56.9994 37.9915C59.1738 37.9825 61.1951 37.0497 62.4084 35.2498C69.4122 25.7363 73.3315 12.6738 73.3315 7.64195C73.4666 5.91384 72.7639 4.51461 71.1781 3.36353Z" fill="#E10514"/>
+        <path d="M52.1224 17.5589C52.1224 17.5589 50.6537 14.0369 49.8819 10.3594C49.8158 10.0485 50.005 9.74052 50.3144 9.6568C51.8851 9.22627 54.8073 8.82265 56.4171 8.82265C60.5377 8.82265 63.6131 9.6568 63.547 12.4822C63.4869 15.0504 60.2403 17.0057 52.1254 17.5589M67.8748 11.9829C67.7577 7.95261 64.6763 4.48145 56.4622 4.48145C52.9903 4.48145 49.2572 5.14219 46.7314 6.26337C46.404 6.40688 46.1247 6.55936 45.9085 6.71782C45.4099 7.07959 45.0555 7.5759 45.1186 8.35923C45.1336 8.56552 46.0346 18.994 54.7202 32.1312C55.2158 32.8816 55.8825 33.7696 56.8406 33.7696C57.18 33.7696 57.3391 33.7457 57.8137 33.5543C58.2611 33.3749 58.9129 32.8637 59.075 32.0774C59.1952 31.4824 59.036 30.8904 58.8168 30.5556C55.9666 26.2383 53.8763 21.6968 53.8763 21.6968C53.8763 21.6968 68.1421 21.0211 67.8778 11.9799" fill="white"/>
+      </svg>
+      <div>
+        <div class="footer-brand-name">SparkKit</div>
+        <div class="footer-credit" data-i18n="footer-credit">בנוי עבור פספורטכארד על ידי בן עקיבא</div>
+      </div>
+    </div>
+
+    <span class="version-badge">v1.2.1</span>
+
+    <a href="https://github.com/dartaryan/spark-passportcard" target="_blank" rel="noopener" class="footer-link">
+      <i data-lucide="github" style="width:16px;height:16px"></i>
+      <span data-i18n="footer-github">GitHub</span>
+    </a>
+  </div>
+</footer>
+
+
+<!-- ================================================================
+     SCRIPT
+================================================================ -->
+<script>
+  /* ---- Bilingual strings ---- */
+  const S = {
+    'nav-what':     { he: 'מה זה',           en: 'What is it' },
+    'nav-pipeline': { he: 'איך עובד',         en: 'How it works' },
+    'nav-tools':    { he: 'כלים',             en: 'Tools' },
+    'nav-install':  { he: 'התקנה',            en: 'Install' },
+    'nav-faq':      { he: 'שאלות נפוצות',     en: 'FAQ' },
+    'nav-cta':      { he: 'התקנה',            en: 'Install' },
+
+    'hero-label':   { he: 'ערכת כלים פנימית · פספורטכארד', en: 'Internal Toolkit · PassportCard' },
+    'hero-tagline': { he: 'מרעיון למוצר. ערכת הכלים האסטרטגית של פספורטכארד.', en: "From idea to production. PassportCard's AI-powered product strategy toolkit." },
+    'hero-cta1':    { he: 'התחלת עבודה',      en: 'Get Started' },
+    'hero-cta2':    { he: 'למידע נוסף',       en: 'Learn More' },
+
+    'what-label':         { he: 'מה זה ספארקיט', en: 'What is SparkKit' },
+    'what-title':         { he: "לא צ'אטבוט. מתודולוגיה.", en: 'Not a chatbot. A methodology.' },
+    'what-p1':            { he: 'ספארקיט הוא ערכת כלים מובנית לאסטרטגיית מוצר שמלווה אותך מרעיון גולמי ועד קונספט מאומת, אב-טיפוס עובד ותוכנה מוכנה לייצור. הוא נבנה במיוחד עבור עובדי פספורטכארד.', en: 'SparkKit is a structured product strategy toolkit that guides you from a raw idea to a validated concept, working prototype, and production-ready software. Built specifically for PassportCard employees.' },
+    'what-callout-title': { he: "ספארקיט הוא לא צ'אטבוט.", en: 'SparkKit is not a chatbot.' },
+    'what-callout-body':  { he: 'הוא מתודולוגיה מובנית עם מומחיות מובנית. יש לו דעות, הוא מציג שאלות קשות, ולא יניח לך לדלג על שלבים.', en: "It's a structured methodology with built-in expertise. It has opinions, asks hard questions, and won't let you skip phases." },
+    'what-b1': { he: 'צינור עבודה של 10 שלבים שמבטיח שלא מפספסים כלום', en: 'A 10-phase pipeline that ensures nothing is missed' },
+    'what-b2': { he: 'שערי איכות בין כל שלב', en: 'Built-in quality gates between every phase' },
+    'what-b3': { he: 'בדיקות רגולציה לכל תחום שיפוט שבו פספורטכארד פועלת', en: "Regulatory compliance checks for every jurisdiction PassportCard operates in" },
+    'what-b4': { he: 'פורמט פלט מותאם קהל — דירקטוריון, מנכ"ל, הנהלה, צוות, סוכנים', en: 'Audience-specific output formatting — Board, CEO, C-Level, Team, Brokers' },
+    'what-b5': { he: 'אכיפת מותג פספורטכארד על כל התוצרים', en: 'PassportCard brand enforcement on all outputs' },
+    'what-b6': { he: 'מסמכי Brief + PRD מקצועיים בסטנדרט בינלאומי', en: 'Professional Brief + PRD documents that meet international standards' },
+    'what-b7': { he: 'אבות-טיפוס HTML עובדים שאפשר לשתף ולבדוק', en: 'Working HTML prototypes you can share and test' },
+    'what-b8': { he: 'תמיכה מלאה בפיתוח עד לייצור', en: 'Full development support through to production' },
+
+    'pipeline-label':    { he: 'צינור העבודה', en: 'The Pipeline' },
+    'pipeline-title':    { he: '10 שלבים. מרעיון לייצור.', en: '10 phases. From idea to production.' },
+    'pipeline-subtitle': { he: 'כל שלב מסתיים בשער שחייבים לעבור לפני שממשיכים. לא ניתן לדלג.', en: 'Every phase ends with a gate that must pass before continuing. No skipping allowed.' },
+    'phase-0-name':  { he: 'שער כניסה', en: 'Session Gate' },
+    'phase-0-desc':  { he: 'שפה, פורמט, קהל, תפקיד, סיווג נתונים', en: 'Language, format, audience, role, data classification' },
+    'phase-1-name':  { he: 'גילוי', en: 'Discovery' },
+    'phase-1-desc':  { he: 'ראיון אסטרטגי לחידוד הרעיון', en: 'Strategic interview to sharpen the idea' },
+    'phase-2-name':  { he: 'ניתוח שוק', en: 'Market Analysis' },
+    'phase-2-desc':  { he: 'תמונת תחרות ומיצוב', en: 'Competitive landscape and positioning' },
+    'phase-25-name': { he: 'שיטות עבודה מומלצות', en: 'Best Practices' },
+    'phase-25-desc': { he: 'מחקר ממקורות מוסמכים', en: 'Authoritative source research' },
+    'phase-3-name':  { he: 'הגדרת מוצר', en: 'Product Definition' },
+    'phase-3-desc':  { he: "פיצ'רים, user stories, כיוון עיצובי", en: 'Features, user stories, design direction' },
+    'phase-4-name':  { he: 'מסמך אסטרטגי', en: 'Brief + PRD' },
+    'phase-4-desc':  { he: 'Brief + PRD בסטנדרט בינלאומי', en: 'Professional strategy and requirements document' },
+    'phase-5-name':  { he: 'אב-טיפוס', en: 'Prototype' },
+    'phase-5-desc':  { he: 'אב-טיפוס HTML עובד', en: 'Working HTML prototype' },
+    'phase-6-name':  { he: 'פריסה', en: 'Deployment' },
+    'phase-6-desc':  { he: 'העלאת אב-הטיפוס לאוויר', en: 'Get the prototype live' },
+    'phase-7-name':  { he: 'סביבת פיתוח', en: 'Dev Environment' },
+    'phase-7-desc':  { he: 'ארכיטקטורה וסטאק טכנולוגי', en: 'Architecture and tech stack' },
+    'phase-8-name':  { he: 'פיתוח', en: 'Development' },
+    'phase-8-desc':  { he: 'קוד ייצור', en: 'Production code' },
+    'phase-9-name':  { he: 'בדיקות ואבטחה', en: 'QA + Security' },
+    'phase-9-desc':  { he: 'QA, ביקורת אבטחה, מוכנות לפריסה', en: 'Testing, security audit, deployment readiness' },
+    'pipeline-note': { he: 'לא חייבים לעבור את כל 10 השלבים. הרבה פרויקטים נעצרים אחרי שלב 6 (אב-טיפוס) ומעבירים לצוות פיתוח.', en: "You don't have to go through all 10 phases. Many projects stop after Phase 6 (prototype) and hand off to a development team." },
+
+    'tools-label':      { he: 'הכלים', en: 'The Tools' },
+    'tools-title':      { he: 'שני חלקים. עבודה אחת.', en: 'Two components. One workflow.' },
+    'tool1-badge':      { he: 'פלאגין', en: 'Plugin' },
+    'tool1-where-label':{ he: 'איפה:', en: 'Where:' },
+    'tool1-where':      { he: ' Claude Desktop או Claude Code', en: ' Claude Desktop or Claude Code' },
+    'tool1-desc':       { he: 'מנוע הביצוע. מריץ פקודות, מייצר תוצרים, בונה אבות-טיפוס. כאן קורה העבודה.', en: 'The execution engine. Run commands, produce deliverables, build prototypes. This is where the work happens.' },
+    'tool1-cmds-label': { he: 'פקודות עיקריות', en: 'Key Commands' },
+    'tool2-badge':      { he: 'סוכן', en: 'Agent' },
+    'tool2-where-label':{ he: 'איפה:', en: 'Where:' },
+    'tool2-where':      { he: ' פרויקט Spark ב-Claude.ai', en: ' Spark Project in Claude.ai' },
+    'tool2-desc':       { he: 'המנחה האישי שלך. שאל שאלות, קבל עצות, הכן briefs, שמור התקדמות. מכיר את כל צינור SparkKit ויכול לנווט אותך בו.', en: 'Your personal guide. Ask questions, get advice, prepare briefs, save progress. Knows the full SparkKit pipeline and can help you navigate it.' },
+    'tool2-use-label':  { he: 'אופן שימוש', en: 'How to use' },
+    'tool2-use':        { he: 'פשוט שוחח. Spark ידריך אותך.', en: 'Just chat. Spark will guide you from there.' },
+
+    'install-label':        { he: 'התקנה', en: 'Installation' },
+    'install-title':        { he: 'מתחילים להשתמש', en: 'Get up and running' },
+    'install-subtitle':     { he: 'ההתקנה לוקחת פחות מ-5 דקות.', en: 'Installation takes less than 5 minutes.' },
+    'install-plugin-title': { he: 'התקנת פלאגין SparkKit', en: 'SparkKit Plugin Installation' },
+    'install-s1':  { he: 'פתח את Claude Desktop (האפליקציה, לא האתר)', en: 'Open Claude Desktop (the app, not the website)' },
+    'install-s2':  { he: 'לחץ על "Customize" בסרגל הצד השמאלי', en: 'Click "Customize" in the left sidebar' },
+    'install-s3':  { he: 'תחת "Personal plugins", לחץ על כפתור "+"', en: 'Under "Personal plugins", click the "+" button' },
+    'install-s4':  { he: 'בחר "Add from GitHub"', en: 'Select "Add from GitHub"' },
+    'install-s5':  { he: 'הדבק את הכתובת:', en: 'Paste:' },
+    'install-s6':  { he: 'לחץ "Sync" להורדה', en: 'Click "Sync" to download' },
+    'install-s7':  { he: 'מצא את "Spark" ברשימת הפלאגינים והפעל אותו', en: 'Find "Spark" in the plugin list and toggle it ON' },
+    'install-agent-title':  { he: 'הגדרת סוכן Spark', en: 'Spark Agent Setup' },
+    'install-a1':  { he: 'היכנס ל-claude.ai ופתח את פרויקט Spark (הקישור יסופק על ידי ראש הצוות)', en: 'Go to claude.ai and open the Spark Project (link will be provided by your team lead)' },
+    'install-a2':  { he: 'התחל לשוחח — Spark ידריך אותך משם', en: 'Start chatting — Spark will guide you from there' },
+    'install-update-title': { he: 'עדכון SparkKit', en: 'Updating SparkKit' },
+    'install-update-intro': { he: 'כשמקבלים הודעה על עדכונים:', en: 'When you receive a notification about updates:' },
+    'install-u1':  { he: 'עבור ל-Customize > פלאגין Spark', en: 'Go to Customize > Spark plugin' },
+    'install-u2':  { he: 'לחץ על תפריט "..."', en: 'Click the "..." menu' },
+    'install-u3':  { he: 'לחץ "Uninstall"', en: 'Click "Uninstall"' },
+    'install-u4':  { he: 'הוסף מחדש מ-GitHub (אותם שלבים כמו ההתקנה)', en: 'Re-add from GitHub (same steps as installation)' },
+
+    'faq-label': { he: 'שאלות נפוצות', en: 'FAQ' },
+    'faq-title': { he: 'יש לך שאלות?', en: 'Have questions?' },
+    'faq-1-q':   { he: 'האם אני צריך ידע טכני כדי להשתמש בספארקיט?', en: 'Do I need any technical knowledge to use SparkKit?' },
+    'faq-1-a':   { he: 'לא. ספארקיט מתאים את עצמו לתפקידך. אם אתה לא טכני, הוא משתמש בשפה פשוטה ומטפל בכל ההחלטות הטכניות עבורך.', en: "No. SparkKit adapts to your role. If you're non-technical, it uses plain language and handles all technical decisions for you." },
+    'faq-2-q':   { he: 'האם אפשר להשתמש בספארקיט לכל סוג של פרויקט?', en: 'Can I use SparkKit for any type of project?' },
+    'faq-2-a':   { he: 'ספארקיט מיועד לאסטרטגיית מוצר — הפיכת רעיונות לתוכניות קונקרטיות, אבות-טיפוס ותוכנה. הוא מותאם לסביבה העסקית של פספורטכארד כולל ביטוח, רגולציה ופעילות רב-מדינתית.', en: "SparkKit is designed for product strategy — turning ideas into concrete plans, prototypes, and software. It's optimized for PassportCard's business context including insurance, compliance, and multi-jurisdiction operations." },
+    'faq-3-q':   { he: 'מה ההבדל בין ספארקיט לבין ספארק?', en: "What's the difference between SparkKit and Spark?" },
+    'faq-3-a':   { he: 'ספארקיט הוא ערכת הכלים — הפלאגין עם הפקודות והמיומנויות. ספארק הוא המנחה שלך — סוכן שיחה שעוזר לך לנווט בספארקיט. חשבו על ספארק כמייעץ ועל ספארקיט כסדנה.', en: "SparkKit is the toolkit — the plugin with commands and skills. Spark is your guide — a conversational agent that helps you navigate SparkKit. Think of Spark as the advisor and SparkKit as the workshop." },
+    'faq-4-q':   { he: 'האם חייבים לעבור את כל 10 השלבים?', en: 'Do I need to complete all 10 phases?' },
+    'faq-4-a':   { he: 'לא. הרבה פרויקטים מרוויחים מרק שלבים 0–6 (אסטרטגיה ועד אב-טיפוס). שלבים 7–9 הם לפרויקטים שממשיכים לפיתוח תוכנה מלא.', en: "No. Many projects benefit from just Phases 0–6 (strategy through prototype). Phases 7–9 are for projects that proceed to full software development." },
+    'faq-5-q':   { he: 'האם המידע שלי בטוח?', en: 'Is my data safe?' },
+    'faq-5-a':   { he: 'ספארקיט כולל סיווג נתונים בתחילת כל סשן. הוא מזכיר לך לא להדביק מידע קנייני בשיחות. כל התוצרים מסומנים "לשימוש פנימי בלבד".', en: 'SparkKit includes data classification at the start of every session. It reminds you never to paste proprietary data into conversations. All outputs are marked "Internal Use Only."' },
+    'faq-6-q':   { he: 'איך מקבלים עדכונים?', en: 'How do I get updates?' },
+    'faq-6-a':   { he: 'ראש הצוות שלך יודיע לך כשיהיו עדכונים זמינים. עקוב אחר הוראות העדכון בחלק ההתקנה.', en: 'Your team lead will notify you when updates are available. Follow the update instructions in the Installation section.' },
+    'faq-7-q':   { he: 'מה אם אני נתקע?', en: 'What if I get stuck?' },
+    'faq-7-a':   { he: 'פתח את פרויקט ספארק ב-Claude.ai ובקש עזרה. ספארק מכיר את כל מערכת ספארקיט ויכול להדריך אותך.', en: 'Open the Spark Project in Claude.ai and ask for help. Spark knows the entire SparkKit system and can guide you.' },
+    'faq-8-q':   { he: 'האם אפשר להשתמש בספארקיט בעברית?', en: 'Can I use SparkKit in Hebrew?' },
+    'faq-8-a':   { he: 'כן. ספארקיט תומך בעברית, אנגלית, גרמנית ושפות נוספות. אתה בוחר את השפה שלך בשלב 0.', en: 'Yes. SparkKit supports Hebrew, English, German, and other languages. You choose your language in Phase 0.' },
+
+    'footer-credit': { he: 'בנוי עבור פספורטכארד על ידי בן עקיבא', en: 'Built for PassportCard by Ben Akiva' },
+    'footer-github': { he: 'GitHub', en: 'GitHub' },
+  };
+
+  /* ---- Language toggle ---- */
+  let lang = 'he';
+
+  function setLang(next) {
+    if (next === lang) return;
+    document.body.classList.add('switching');
+    setTimeout(() => {
+      lang = next;
+      document.documentElement.lang = lang;
+      document.documentElement.dir  = lang === 'he' ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (S[k] && S[k][lang] !== undefined) el.textContent = S[k][lang];
+      });
+
+      // Step 8: has inline <code>
+      const s8 = document.getElementById('install-s8-el');
+      if (s8) {
+        s8.innerHTML = lang === 'he'
+          ? "אמת על ידי הקלדת <code>/spark-</code> בכל צ'אט — אמורות להופיע הפקודות"
+          : 'Verify by typing <code>/spark-</code> in any chat — you should see the commands';
+      }
+
+      document.getElementById('lang-toggle').textContent = lang === 'he' ? 'EN' : 'עב';
+      document.body.classList.remove('switching');
+    }, 120);
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => setLang(lang === 'he' ? 'en' : 'he'));
+
+  /* ---- Mobile menu ---- */
+  const mobileBtn  = document.getElementById('mobile-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+
+  mobileBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.style.display = menuOpen ? 'block' : 'none';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { menuOpen = false; mobileMenu.style.display = 'none'; });
+  });
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item    = trigger.closest('.faq-item');
+      const body    = item.querySelector('.faq-body');
+      const chevron = trigger.querySelector('.faq-chevron');
+      const isOpen  = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chevron.classList.toggle('open', !isOpen);
+    });
+  });
+
+  /* ---- Lucide icons ---- */
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

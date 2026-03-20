@@ -1,0 +1,19 @@
+{
+  "name": "spark",
+  "version": "3.4.0",
+  "description": "SparkKit product strategist with embedded Spark agent. Full product development lifecycle — 10-phase pipeline from discovery through launch for PassportCard.",
+  "author": {
+    "name": "Ben Akiva",
+    "email": "benakiva1991@gmail.com"
+  },
+  "repository": "https://github.com/dartaryan/spark-passportcard",
+  "keywords": [
+    "product-strategy",
+    "passportcard",
+    "spark",
+    "agent",
+    "product-management"
+  ],
+  "agents": "./agents/",
+  "skills": "./skills/"
+}

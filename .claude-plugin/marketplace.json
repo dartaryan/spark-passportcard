@@ -1,0 +1,15 @@
+{
+  "name": "spark-passportcard",
+  "description": "SparkKit product strategist plugin for PassportCard — 10-phase pipeline from discovery through launch.",
+  "owner": {
+    "name": "Ben Akiva",
+    "email": "benakiva1991@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "spark",
+      "description": "SparkKit product strategist with embedded Spark agent. Full product development lifecycle for PassportCard.",
+      "source": "./"
+    }
+  ]
+}

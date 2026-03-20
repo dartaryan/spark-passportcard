@@ -1,0 +1,24 @@
+{
+  "name": "spark",
+  "version": "3.4.0",
+  "description": "SparkKit is a Claude plugin that provides the complete toolkit for structured product strategy at PassportCard: skills, commands, references, templates, and brand assets. The Spark agent runs from a workspace CLAUDE.md file, making it portable and customizable.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dartaryan/spark-passportcard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dartaryan/spark-passportcard/issues"
+  },
+  "homepage": "https://github.com/dartaryan/spark-passportcard#readme",
+  "dependencies": {
+    "docx": "^9.6.1",
+    "pptxgenjs": "^4.0.1"
+  }
+}

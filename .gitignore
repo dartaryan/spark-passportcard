@@ -1,0 +1,25 @@
+# Source materials (Ben's build files - not part of the plugin)
+source-materials/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+node_modules/
+
+# Claude local notes (not part of the plugin)
+.claude/
+
+# Heavy binary files (breaks marketplace install if tracked)
+templates/*.pptx
+assets/images/generated/
+_archive/
+package-lock.json
